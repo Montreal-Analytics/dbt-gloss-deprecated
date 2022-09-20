@@ -21,4 +21,4 @@ RUN apt-get update &&\
 
 WORKDIR /github/workspace
 
-ENTRYPOINT [ "bin/bash" ]
+ENTRYPOINT [ "pre-commit" ]
