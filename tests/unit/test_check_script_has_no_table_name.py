@@ -135,7 +135,7 @@ TESTS = (  # type: ignore
     ),
     (
         """
-    {# This is a test of the check-script-has-no-table-name hook, from pre-commit-dbt
+    {# This is a test of the check-script-has-no-table-name hook, from dbt-gloss
 
     We would expect the hook to ignore this text because it is in a jinja comment block
     and not actually a join to any other table.
@@ -152,7 +152,7 @@ TESTS = (  # type: ignore
     ),
     (
         """
-    /* This is a test of the check-script-has-no-table-name hook, from pre-commit-dbt
+    /* This is a test of the check-script-has-no-table-name hook, from dbt-gloss
 
     We would expect the hook to ignore this text because it is in a jinja comment block
     and not actually a join to any other table.

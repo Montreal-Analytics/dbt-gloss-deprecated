@@ -1,66 +1,66 @@
-## List of `pre-commit-dbt` hooks
+## List of `dbt-gloss` hooks
 
 :bulb: Click on hook name to view the details.
 
-[`check-column-name-contract`]: https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-column-name-contract
+[`check-column-name-contract`]: https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-column-name-contract
 
 **Model checks:**
- * [`check-column-desc-are-same`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-column-desc-are-same): Check column descriptions are the same.
+ * [`check-column-desc-are-same`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-column-desc-are-same): Check column descriptions are the same.
  * [`check-column-name-contract`](): Check column name abides to contract.
- * [`check-model-columns-have-desc`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-columns-have-desc): Check the model columns have description.
- * [`check-model-has-all-columns`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-all-columns): Check the model has all columns in the properties file.
- * [`check-model-has-description`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-description): Check the model has description.
- * [`check-model-has-meta-keys`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-meta-keys): Check the model has keys in the meta part.
- * [`check-model-has-properties-file`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-properties-file): Check the model has properties file.
- * [`check-model-has-tests-by-name`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-tests-by-name): Check the model has a number of tests by test name.
- * [`check-model-has-tests-by-type`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-tests-by-type): Check the model has a number of tests by test type.
- * [`check-model-has-tests-by-group`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-tests-by-group): Check the model has a number of tests from a group of tests.
- * [`check-model-has-tests`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-has-tests): Check the model has a number of tests.
- * [`check-model-name-contract`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-name-contract): Check model name abides to contract.
- * [`check-model-parents-and-childs`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-parents-and-childs): Check the model has a specific number (max/min) of parents or/and childs.
- * [`check-model-parents-database`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-parents-database): Check the parent model has a specific database.
- * [`check-model-parents-schema`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-parents-schema): Check the parent model has a specific schema.
- * [`check-model-tags`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-model-tags): Check the model has valid tags.
+ * [`check-model-columns-have-desc`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-columns-have-desc): Check the model columns have description.
+ * [`check-model-has-all-columns`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-all-columns): Check the model has all columns in the properties file.
+ * [`check-model-has-description`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-description): Check the model has description.
+ * [`check-model-has-meta-keys`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-meta-keys): Check the model has keys in the meta part.
+ * [`check-model-has-properties-file`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-properties-file): Check the model has properties file.
+ * [`check-model-has-tests-by-name`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-tests-by-name): Check the model has a number of tests by test name.
+ * [`check-model-has-tests-by-type`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-tests-by-type): Check the model has a number of tests by test type.
+ * [`check-model-has-tests-by-group`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-tests-by-group): Check the model has a number of tests from a group of tests.
+ * [`check-model-has-tests`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-tests): Check the model has a number of tests.
+ * [`check-model-name-contract`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-name-contract): Check model name abides to contract.
+ * [`check-model-parents-and-childs`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-parents-and-childs): Check the model has a specific number (max/min) of parents or/and childs.
+ * [`check-model-parents-database`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-parents-database): Check the parent model has a specific database.
+ * [`check-model-parents-schema`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-parents-schema): Check the parent model has a specific schema.
+ * [`check-model-tags`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-tags): Check the model has valid tags.
 
 **Script checks:**
- * [`check-script-semicolon`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-script-semicolon): Check the script does not contain a semicolon.
- * [`check-script-has-no-table-name`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-script-has-no-table-name): Check the script has not table name (is not using `source()` or `ref()` macro for all tables).
- * [`check-script-ref-and-source`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-script-ref-and-source): Check the script has only existing refs and sources.
+ * [`check-script-semicolon`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-script-semicolon): Check the script does not contain a semicolon.
+ * [`check-script-has-no-table-name`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-script-has-no-table-name): Check the script has not table name (is not using `source()` or `ref()` macro for all tables).
+ * [`check-script-ref-and-source`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-script-ref-and-source): Check the script has only existing refs and sources.
 
 **Source checks:**
- * [`check-source-columns-have-desc`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-columns-have-desc): Check for source column descriptions.
- * [`check-source-has-all-columns`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-has-all-columns): Check the source has all columns in the properties file.
- * [`check-source-table-has-description`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-table-has-description): Check the source table has description.
- * [`check-source-has-freshness`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-has-freshness): Check the source has the freshness.
- * [`check-source-has-loader`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-has-loader): Check the source has loader option.
- * [`check-source-has-meta-keys`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-has-meta-keys): Check the source has keys in the meta part.
- * [`check-source-has-tests-by-name`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-has-tests-by-name): Check the source has a number of tests by test name.
- * [`check-source-has-tests-by-type`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-has-tests-by-type): Check the source has a number of tests by test type.
- * [`check-source-has-tests`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-has-tests): Check the source has a number of tests.
- * [`check-source-tags`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-tags): Check the source has valid tags.
- * [`check-source-childs`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-source-childs): Check the source has a specific number (max/min) of childs.
+ * [`check-source-columns-have-desc`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-columns-have-desc): Check for source column descriptions.
+ * [`check-source-has-all-columns`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-has-all-columns): Check the source has all columns in the properties file.
+ * [`check-source-table-has-description`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-table-has-description): Check the source table has description.
+ * [`check-source-has-freshness`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-has-freshness): Check the source has the freshness.
+ * [`check-source-has-loader`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-has-loader): Check the source has loader option.
+ * [`check-source-has-meta-keys`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-has-meta-keys): Check the source has keys in the meta part.
+ * [`check-source-has-tests-by-name`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-has-tests-by-name): Check the source has a number of tests by test name.
+ * [`check-source-has-tests-by-type`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-has-tests-by-type): Check the source has a number of tests by test type.
+ * [`check-source-has-tests`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-has-tests): Check the source has a number of tests.
+ * [`check-source-tags`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-tags): Check the source has valid tags.
+ * [`check-source-childs`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-source-childs): Check the source has a specific number (max/min) of childs.
 
 **Macro checks:**
- * [`check-macro-has-description`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-macro-has-description): Check the macro has description.
- * [`check-macro-arguments-have-desc`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#check-macro-arguments-have-desc): Check the macro arguments have description.
+ * [`check-macro-has-description`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-macro-has-description): Check the macro has description.
+ * [`check-macro-arguments-have-desc`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-macro-arguments-have-desc): Check the macro arguments have description.
 
 **Modifiers:**
- * [`generate-missing-sources`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#generate-missing-sources): If any source is missing this hook tries to create it.
- * [`generate-model-properties-file`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#generate-model-properties-file): Generate model properties file.
- * [`unify-column-description`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#unify-column-description): Unify column descriptions across all models.
- * [`replace-script-table-names`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#replace-script-table-names): Replace table names with `source()` or `ref()` macros in the script.
- * [`remove-script-semicolon`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#remove-script-semicolon): Remove the semicolon at the end of the script.
+ * [`generate-missing-sources`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#generate-missing-sources): If any source is missing this hook tries to create it.
+ * [`generate-model-properties-file`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#generate-model-properties-file): Generate model properties file.
+ * [`unify-column-description`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#unify-column-description): Unify column descriptions across all models.
+ * [`replace-script-table-names`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#replace-script-table-names): Replace table names with `source()` or `ref()` macros in the script.
+ * [`remove-script-semicolon`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#remove-script-semicolon): Remove the semicolon at the end of the script.
 
 **dbt commands:**
- * [`dbt-clean`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#dbt-clean): Run `dbt clean` command.
- * [`dbt-compile`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#dbt-compile): Run `dbt compile` command.
- * [`dbt-deps`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#dbt-deps): Run `dbt deps` command.
- * [`dbt-docs-generate`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#dbt-docs-generate): Run `dbt docs generate` command.
- * [`dbt-run`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#dbt-run): Run `dbt run` command.
- * [`dbt-test`](https://github.com/offbi/pre-commit-dbt/blob/main/HOOKS.md#dbt-test): Run `dbt test` command.
+ * [`dbt-clean`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#dbt-clean): Run `dbt clean` command.
+ * [`dbt-compile`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#dbt-compile): Run `dbt compile` command.
+ * [`dbt-deps`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#dbt-deps): Run `dbt deps` command.
+ * [`dbt-docs-generate`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#dbt-docs-generate): Run `dbt docs generate` command.
+ * [`dbt-run`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#dbt-run): Run `dbt run` command.
+ * [`dbt-test`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#dbt-test): Run `dbt test` command.
 
 ---
-:exclamation:**If you have an idea for a new hook or you found a bug, [let us know](https://github.com/offbi/pre-commit-dbt/issues/new)**:exclamation:
+:exclamation:**If you have an idea for a new hook or you found a bug, [let us know](https://github.com/Montreal-Analytics/dbt-gloss/issues/new)**:exclamation:
 
 ## Available Hooks
 ### `check-column-desc-are-same`
@@ -74,7 +74,7 @@ Check the models have the same descriptions for the same column names.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-column-desc-are-same
@@ -115,7 +115,7 @@ Check that column name abides to a contract, as described in [this blog post](ht
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-column-name-contract
@@ -156,7 +156,7 @@ Ensures that the model has columns with descriptions in the properties file (usu
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-columns-have-desc
@@ -195,12 +195,12 @@ Ensures that all columns in the database are also specified in the properties fi
 #### Arguments
 
 `--manifest`: location of `manifest.json` file. Usually `target/manifest.json`. This file contains a full representation of dbt project. **Default: `target/manifest.json`**<br/>
-`--catalog`: location of `catalog.json` file. Usually `target/catalog.json`. dbt uses this file to render information like column types and table statistics into the docs site. In pre-commit-dbt is used for column operations. **Default: `target/catalog.json`**
+`--catalog`: location of `catalog.json` file. Usually `target/catalog.json`. dbt uses this file to render information like column types and table statistics into the docs site. In dbt-gloss is used for column operations. **Default: `target/catalog.json`**
 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-all-columns
@@ -243,7 +243,7 @@ Ensures that the model has a description in the properties file (usually `schema
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-description
@@ -288,7 +288,7 @@ Ensures that the model has a list of valid meta keys. (usually `schema.yml`).
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-meta-keys
@@ -335,7 +335,7 @@ Ensures that the model has a properties file (schema file).
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-properties-file
@@ -378,7 +378,7 @@ Ensures that the model has a number of tests of a certain name (e.g. data, uniqu
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-tests-by-name
@@ -420,7 +420,7 @@ Ensures that the model has a number of tests of a certain type (data, schema).
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-tests-by-type
@@ -463,7 +463,7 @@ Ensures that the model has a number of tests from a group of tests.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-tests-by-group
@@ -505,7 +505,7 @@ Ensures that the model has a number of tests.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-has-tests
@@ -546,7 +546,7 @@ Check that model name abides to a contract (similar to [`check-column-name-contr
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-name-contract
@@ -593,7 +593,7 @@ Ensures the model has a specific number (max/min) of parents or/and childs.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-parents-and-childs
@@ -636,7 +636,7 @@ Ensures the parent models or sources are from certain database.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-parents-database
@@ -679,7 +679,7 @@ Ensures the parent models or sources are from certain schema.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-parents-schema
@@ -721,7 +721,7 @@ Ensures that the model has only valid tags from the provided list.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-model-tags
@@ -762,7 +762,7 @@ Ensures that the script contains only existing sources or macros.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-script-ref-and-source
@@ -788,7 +788,7 @@ Ensure that the script does not have a semicolon at the end of the file.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-script-semicolon
@@ -832,7 +832,7 @@ Ensures that the script is using only source or ref macro to specify the table n
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-script-has-no-table-name
@@ -863,7 +863,7 @@ Ensures that the source has columns with descriptions in the properties file (us
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-columns-have-desc
@@ -896,12 +896,12 @@ Ensures that all columns in the database are also specified in the properties fi
 #### Arguments
 
 `--manifest`: location of `manifest.json` file. Usually `target/manifest.json`. This file contains a full representation of dbt project. **Default: `target/manifest.json`**<br/>
-`--catalog`: location of `catalog.json` file. Usually `target/catalog.json`. dbt uses this file to render information like column types and table statistics into the docs site. In pre-commit-dbt is used for column operations. **Default: `target/catalog.json`**
+`--catalog`: location of `catalog.json` file. Usually `target/catalog.json`. dbt uses this file to render information like column types and table statistics into the docs site. In dbt-gloss is used for column operations. **Default: `target/catalog.json`**
 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-has-all-columns
@@ -938,7 +938,7 @@ Ensures that the source table has a description in the properties file (usually 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-table-has-description
@@ -970,7 +970,7 @@ Ensures that the source has freshness options in the properties file (usually `s
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-has-freshness
@@ -1005,7 +1005,7 @@ Ensures that the source has a loader option in the properties file (usually `sch
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-has-loader
@@ -1041,7 +1041,7 @@ Ensures that the source has a list of valid meta keys. (usually `schema.yml`).
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-has-meta-keys
@@ -1080,7 +1080,7 @@ Ensures that the source has a number of tests of a certain name (e.g. data, uniq
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-has-tests-by-name
@@ -1120,7 +1120,7 @@ Ensures that the source has a number of tests of a certain type (data, schema).
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-has-tests-by-type
@@ -1160,7 +1160,7 @@ Ensures that the source has a number of tests.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-has-tests
@@ -1200,7 +1200,7 @@ Ensures that the source has only valid tags from the provided list.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-tags
@@ -1242,7 +1242,7 @@ Ensures the source has a specific number (max/min) of childs.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-source-childs
@@ -1282,7 +1282,7 @@ Ensures that the macro has a description in the properties file (usually `macro.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: check-macro-has-description
@@ -1325,7 +1325,7 @@ Ensures that the macro has arguments with descriptions in the properties file (u
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v0.1.1
  hooks:
  - id: check-macro-arguments-have-desc
@@ -1370,7 +1370,7 @@ If any source is missing this hook tries to create it.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: generate-missing-sources
@@ -1425,7 +1425,7 @@ Unify column descriptions across all models.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: unify-column-description
@@ -1471,7 +1471,7 @@ Replace table names with `source` or `ref` macros in the script.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: replace-script-table-names
@@ -1510,13 +1510,13 @@ Generate model properties file if does not exist.
 #### Arguments
 
 `--manifest`: location of `manifest.json` file. Usually `target/manifest.json`. This file contains a full representation of dbt project. **Default: `target/manifest.json`**.<br/>
-`--catalog`: location of `catalog.json` file. Usually `target/catalog.json`. dbt uses this file to render information like column types and table statistics into the docs site. In pre-commit-dbt is used for column operations. **Default: `target/catalog.json`**<br/>
+`--catalog`: location of `catalog.json` file. Usually `target/catalog.json`. dbt uses this file to render information like column types and table statistics into the docs site. In dbt-gloss is used for column operations. **Default: `target/catalog.json`**<br/>
 `--properties-file`: Location of file where new model properties should be generated. Suffix has to be `yml` or `yaml`. It can also include {database}, {schema}, {name} and {alias} variables. E.g. /models/{schema}/{name}.yml for model `foo.bar` will create properties file in /models/foo/bar.yml. If path already exists, properties are appended.
 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: generate-model-properties-file
@@ -1559,7 +1559,7 @@ Remove the semicolon at the end of the script.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: remove-script-semicolon
@@ -1592,7 +1592,7 @@ Run the` dbt clean` command. Deletes all folders specified in the clean-targets.
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-clean
@@ -1610,12 +1610,12 @@ Run the` dbt compile` command. Generates executable SQL from source model, test,
 `--cmd-flags`: Command-specific dbt flags. Instead of dash `-` please use `+`.</br>
 `--model-prefix`: Prefix dbt selector, for selecting parents.</br>
 `--model-postfix`: Postfix dbt selector, for selecting children.</br>
-`--models`: pre-commit-dbt is by default running changed files. If you need to override that, e.g. in case of Slim CI (`state:modified`), you can use this option.
+`--models`: dbt-gloss is by default running changed files. If you need to override that, e.g. in case of Slim CI (`state:modified`), you can use this option.
 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-compile
@@ -1626,7 +1626,7 @@ or
 
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-compile
@@ -1644,7 +1644,7 @@ Run `dbt deps` command. Pulls the most recent version of the dependencies listed
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-deps
@@ -1658,7 +1658,7 @@ Run `dbt docs generate` command. The command is responsible for generating your 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-docs-generate
@@ -1676,12 +1676,12 @@ Run `dbt run` command. Executes compiled SQL model files.
 `--cmd-flags`: Command-specific dbt flags. Instead of dash `-` please use `+`.</br>
 `--model-prefix`: Prefix dbt selector, for selecting parents.</br>
 `--model-postfix`: Postfix dbt selector, for selecting children.</br>
-`--models`: pre-commit-dbt is by default running changed files. If you need to override that, e.g. in case of Slim CI (`state:modified`), you can use this option.
+`--models`: dbt-gloss is by default running changed files. If you need to override that, e.g. in case of Slim CI (`state:modified`), you can use this option.
 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-run
@@ -1692,7 +1692,7 @@ or
 
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-run
@@ -1712,12 +1712,12 @@ Run `dbt test` command. Runs tests on data in deployed models.
 `--cmd-flags`: Command-specific dbt flags. Instead of dash `-` please use `+`.</br>
 `--model-prefix`: Prefix dbt selector, for selecting parents.</br>
 `--model-postfix`: Postfix dbt selector, for selecting children.
-`--models`: pre-commit-dbt is by default running changed files. If you need to override that, e.g. in case of Slim CI (`state:modified`), you can use this option.
+`--models`: dbt-gloss is by default running changed files. If you need to override that, e.g. in case of Slim CI (`state:modified`), you can use this option.
 
 #### Example
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-test
@@ -1728,7 +1728,7 @@ or
 
 ```
 repos:
-- repo: https://github.com/offbi/pre-commit-dbt
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
  rev: v1.0.0
  hooks:
  - id: dbt-test

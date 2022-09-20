@@ -34,21 +34,21 @@ Bump version in Dockerfile - .github/.pre-commit-config-action.yaml
 Build:
 
 ```
-docker build . -t offbi/pre-commit-dbt
-docker tag offbi/pre-commit-dbt:latest offbi/pre-commit-dbt:<version>
+docker build . -t Montreal-Analytics/dbt-gloss
+docker tag Montreal-Analytics/dbt-gloss:latest Montreal-Analytics/dbt-gloss:<version>
 ```
 
 Test:
 
 ```
-docker run offbi/pre-commit-dbt
+docker run Montreal-Analytics/dbt-gloss
 ```
 
 Publish to Docker Hub
 
 ```
-docker push offbi/pre-commit-dbt
-docker push offbi/pre-commit-dbt:<version>
+docker push Montreal-Analytics/dbt-gloss
+docker push Montreal-Analytics/dbt-gloss:<version>
 ```
 
 ## 3. Github Action

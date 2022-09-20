@@ -330,7 +330,7 @@ def add_catalog_args(parser: argparse.ArgumentParser) -> NoReturn:
         default="target/catalog.json",
         help="""Location of catalog.json file. Usually target/catalog.json.
         dbt uses this file to render information like column types and table
-        statistics into the docs site. In pre-commit-dbt is used for columns
+        statistics into the docs site. In dbt-gloss is used for columns
         operations.
         """,
     )
@@ -366,7 +366,7 @@ def add_dbt_cmd_model_args(parser: argparse.ArgumentParser) -> NoReturn:
     parser.add_argument(
         "--models",
         nargs="*",
-        help="""pre-commit-dbt is by default running changed files.
+        help="""dbt-gloss is by default running changed files.
         If you need to override that, e.g. in case of Slim CI (state:modified),
         you can use this option.""",
     )
