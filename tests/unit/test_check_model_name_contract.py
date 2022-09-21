@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.check_model_name_contract import main
+from dbt_gloss.check_model_name_contract import main
 
 
 # Input args, valid manifest, expected return value

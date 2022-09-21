@@ -1,7 +1,7 @@
 import pytest
 
-from pre_commit_dbt.check_model_columns_have_desc import check_column_desc
-from pre_commit_dbt.check_model_columns_have_desc import main
+from dbt_gloss.check_model_columns_have_desc import check_column_desc
+from dbt_gloss.check_model_columns_have_desc import main
 
 
 # Input args, valid manifest, expected return value

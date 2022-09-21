@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from pre_commit_dbt.utils import cmd_output
+from dbt_gloss.utils import cmd_output
 
 MANIFEST = {
     "nodes": {

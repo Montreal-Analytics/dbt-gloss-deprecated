@@ -12,7 +12,7 @@ Tutorial of publishing to help me not to forgot to anything :D
 Run pytests:
 
 ```
-pytest -vvv --cov=pre_commit_dbt --cov-config=setup.cfg --cov-report=term-missing --cov-report=html
+pytest -vvv --cov=dbt_gloss --cov-config=setup.cfg --cov-report=term-missing --cov-report=html
 ```
 
 Run pre-commit:

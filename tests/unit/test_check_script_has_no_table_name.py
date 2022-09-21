@@ -1,9 +1,9 @@
 import pytest
 
-from pre_commit_dbt.check_script_has_no_table_name import has_table_name
-from pre_commit_dbt.check_script_has_no_table_name import main
-from pre_commit_dbt.check_script_has_no_table_name import prev_cur_next_iter
-from pre_commit_dbt.check_script_has_no_table_name import replace_comments
+from dbt_gloss.check_script_has_no_table_name import has_table_name
+from dbt_gloss.check_script_has_no_table_name import main
+from dbt_gloss.check_script_has_no_table_name import prev_cur_next_iter
+from dbt_gloss.check_script_has_no_table_name import replace_comments
 
 
 # Input, args, expected return value, expected output

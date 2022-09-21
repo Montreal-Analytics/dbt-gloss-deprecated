@@ -1,7 +1,7 @@
 import pytest
 
-from pre_commit_dbt.check_source_has_all_columns import get_catalog_nodes
-from pre_commit_dbt.check_source_has_all_columns import main
+from dbt_gloss.check_source_has_all_columns import get_catalog_nodes
+from dbt_gloss.check_source_has_all_columns import main
 
 
 # Input schema, valid_catalog, expected return value

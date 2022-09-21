@@ -1,7 +1,7 @@
 import pytest
 
-from pre_commit_dbt.replace_script_table_names import get_source_from_name
-from pre_commit_dbt.replace_script_table_names import main
+from dbt_gloss.replace_script_table_names import get_source_from_name
+from dbt_gloss.replace_script_table_names import main
 
 
 # Input, expected return value, expected output

@@ -2,17 +2,17 @@ from pathlib import Path
 
 import pytest
 
-from pre_commit_dbt.utils import CalledProcessError
-from pre_commit_dbt.utils import cmd_output
-from pre_commit_dbt.utils import get_filenames
-from pre_commit_dbt.utils import get_macro_schemas
-from pre_commit_dbt.utils import get_model_schemas
-from pre_commit_dbt.utils import MacroSchema
-from pre_commit_dbt.utils import Model
-from pre_commit_dbt.utils import ModelSchema
-from pre_commit_dbt.utils import obj_in_deps
-from pre_commit_dbt.utils import paths_to_dbt_models
-from pre_commit_dbt.utils import SourceSchema
+from dbt_gloss.utils import CalledProcessError
+from dbt_gloss.utils import cmd_output
+from dbt_gloss.utils import get_filenames
+from dbt_gloss.utils import get_macro_schemas
+from dbt_gloss.utils import get_model_schemas
+from dbt_gloss.utils import MacroSchema
+from dbt_gloss.utils import Model
+from dbt_gloss.utils import ModelSchema
+from dbt_gloss.utils import obj_in_deps
+from dbt_gloss.utils import paths_to_dbt_models
+from dbt_gloss.utils import SourceSchema
 
 
 def test_cmd_output_error():
