@@ -21,4 +21,3 @@ RUN apt-get update &&\
 
 WORKDIR /github/workspace
 
-ENTRYPOINT [ "pre-commit", "run", "--files"]
