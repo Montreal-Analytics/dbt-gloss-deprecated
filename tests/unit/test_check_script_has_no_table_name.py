@@ -268,6 +268,17 @@ select * from unioned
         1,
         {"aa.bb"},
     ),
+    (
+        """
+    with source as (
+        select * from {{source('aa', 'bb')}}
+    )
+    SELECT * FROM source
+    """,
+        [],
+        0,
+        {},
+    ),
 )
 
 
