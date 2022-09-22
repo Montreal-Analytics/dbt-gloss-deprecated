@@ -279,6 +279,19 @@ select * from unioned
         0,
         {},
     ),
+    (
+        """
+    {% macro source_cte(source_name, tuple_list) -%}
+    WITH{% for cte_ref in tuple_list %} {{cte_ref[0]}} AS (
+        SELECT * FROM {{ source(source_name, cte_ref[1]) }}
+    ),
+        {%- endfor %} final as (
+    {%- endmacro %}
+    """,
+        [],
+        0,
+        {},
+    ),
 )
 
 

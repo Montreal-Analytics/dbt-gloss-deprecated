@@ -38,7 +38,7 @@ def replace_comments(sql: str) -> str:
 
 
 def add_space_to_parenthesis(sql: str) -> str:
-    return re.sub(REGEX_PARENTHESIS, r" \1 ", sql).replace('{{','{{ ')
+    return re.sub(REGEX_PARENTHESIS, r" \1 ", sql).replace('{{','{{ ').replace('}}',' }}')
 
 
 def has_table_name(
