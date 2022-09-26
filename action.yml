@@ -12,21 +12,21 @@ inputs:
 
 runs:
   using: "composite"
-    steps:
-      - name: Setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+  steps:
+    - name: Setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
 
-      - name: Install pre-commit and dbt
-        run: |
-          pip install --no-cache-dir pre-commit==2.18.0 \
-            dbt-core==1.0.0 \
-            dbt-postgres==1.0.0 \
-            dbt-redshift==1.0.0 \
-            dbt-snowflake==1.0.0 \
-            dbt-bigquery==1.0.0
-          pre-commit install-hooks
+    - name: Install pre-commit and dbt
+      run: |
+        pip install --no-cache-dir pre-commit==2.18.0 \
+          dbt-core==1.0.0 \
+          dbt-postgres==1.0.0 \
+          dbt-redshift==1.0.0 \
+          dbt-snowflake==1.0.0 \
+          dbt-bigquery==1.0.0
+        pre-commit install-hooks
 
-      - name: Run pre-commit hooks
-        run: pre-commit --all-files
+    - name: Run pre-commit hooks
+      run: pre-commit --all-files
