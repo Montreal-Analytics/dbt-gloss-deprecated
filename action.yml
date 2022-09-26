@@ -30,5 +30,5 @@ runs:
       shell: bash
 
     - name: Run pre-commit hooks
-      run: pre-commit --all-files
+      run: pre-commit ${{ inputs.args }}
       shell: bash
