@@ -27,6 +27,8 @@ runs:
           dbt-snowflake==1.0.0 \
           dbt-bigquery==1.0.0
         pre-commit install-hooks
+      shell: bash
 
     - name: Run pre-commit hooks
       run: pre-commit --all-files
+      shell: bash
