@@ -10,6 +10,7 @@ on:
     args:
       description: 'pre-commit args'
       required: false
+      type: string
       default: 'run --all-files'
 
 jobs:
