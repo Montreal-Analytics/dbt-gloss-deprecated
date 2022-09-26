@@ -30,4 +30,4 @@ jobs:
           pre-commit install-hooks
 
       - name: Run pre-commit hooks
-        runs: pre-commit ${{ inputs.args }}
+        runs: pre-commit ${{ github.event.inputs.args }}
