@@ -4,11 +4,13 @@ description: 'List of pre-commit hooks to ensure the quality of your dbt project
 branding:
   icon: 'anchor'
   color: 'blue'
-inputs:
-  args:
-    description: 'pre-commit args'
-    required: false
-    default: 'run --all-files'
+on:
+  workflow_call:
+    inputs:
+    args:
+      description: 'pre-commit args'
+      required: false
+      default: 'run --all-files'
 
 jobs:
   run_pre_commit:
@@ -30,4 +32,4 @@ jobs:
           pre-commit install-hooks
 
       - name: Run pre-commit hooks
-        runs: pre-commit ${{ github.event.inputs.args }}
+        runs: pre-commit ${{ on.workflow_call.inputs.args }}
