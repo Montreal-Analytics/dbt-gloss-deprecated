@@ -4,13 +4,11 @@ description: 'List of pre-commit hooks to ensure the quality of your dbt project
 branding:
   icon: 'anchor'
   color: 'blue'
-on:
-  workflow_call:
-    inputs:
-      args:
-        description: 'pre-commit args'
-        required: false
-        default: 'run --all-files'
+inputs:
+  args:
+    description: 'pre-commit args'
+    required: false
+    default: 'run --all-files'
 
 jobs:
   run_pre_commit:
