@@ -33,4 +33,4 @@ jobs:
           pre-commit install-hooks
 
       - name: Run pre-commit hooks
-        runs: pre-commit ${{ on.workflow_call.inputs.args }}
+        runs: pre-commit ${{ github.event.inputs.args }}
