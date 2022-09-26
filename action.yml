@@ -30,4 +30,4 @@ jobs:
           pre-commit install-hooks
 
       - name: Run pre-commit hooks
-        run: pre-commit ${{ inputs.args }}
+        run: pre-commit --all-files
