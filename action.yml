@@ -10,9 +10,8 @@ inputs:
     required: false
     default: 'run --all-files'
 
-jobs:
-  run_pre_commit:
-    runs-on: ubuntu-latest
+runs:
+  using: "composite"
     steps:
       - name: Setup python
         uses: actions/setup-python@v4
