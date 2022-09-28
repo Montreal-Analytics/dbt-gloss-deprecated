@@ -163,8 +163,10 @@ def get_macro_sqls(paths: Sequence[str], manifest: Dict[str, Any]) -> Dict[str, 
 
 def get_model_sqls(paths: Sequence[str], manifest: Dict[str, Any]) -> Dict[str, Any]:
     sqls = get_filenames(paths, [".sql"])
-    macro_sqls = get_macro_sqls(paths, manifest)
-    return {k: v for k, v in sqls.items() if k not in macro_sqls}
+    node_paths = [m["path"] for m in manifest.get("nodes", {}).values()]
+    model_paths = # node_paths filtered down to model paths only
+    model_sqls = get_filenames(model_paths, extensions=[".sql"])
+    return {k: v for k, v in sqls.items() if k in model_sqls and v == model_sqls[k]}
 
 
 def get_model_schemas(
