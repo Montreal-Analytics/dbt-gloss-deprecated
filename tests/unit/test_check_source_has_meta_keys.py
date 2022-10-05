@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.check_source_has_meta_keys import main
+from dbt_gloss.check_source_has_meta_keys import main
 
 
 # Input schema, expected return value

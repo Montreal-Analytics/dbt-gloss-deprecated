@@ -1,11 +1,11 @@
 from unittest.mock import patch
 
-from pre_commit_dbt.dbt_docs_generate import docs_generate_cmd
-from pre_commit_dbt.dbt_docs_generate import main
+from dbt_gloss.dbt_docs_generate import docs_generate_cmd
+from dbt_gloss.dbt_docs_generate import main
 
 
 def test_dbt_docs_generate():
-    with patch("pre_commit_dbt.utils.subprocess.Popen") as mock_popen:
+    with patch("dbt_gloss.utils.subprocess.Popen") as mock_popen:
         mock_popen.return_value.communicate.return_value = (
             b"stdout",
             b"stderr",
@@ -16,7 +16,7 @@ def test_dbt_docs_generate():
 
 
 def test_dbt_docs_generate_error():
-    with patch("pre_commit_dbt.utils.subprocess.Popen") as mock_popen:
+    with patch("dbt_gloss.utils.subprocess.Popen") as mock_popen:
         mock_popen.return_value.communicate.return_value = (
             b"stdout",
             b"stderr",

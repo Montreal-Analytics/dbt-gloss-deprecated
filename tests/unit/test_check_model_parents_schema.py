@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.check_model_parents_schema import main
+from dbt_gloss.check_model_parents_schema import main
 
 
 # Input schema, input_args, valid_manifest, expected return value
