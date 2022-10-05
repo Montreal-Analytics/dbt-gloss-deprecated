@@ -1,5 +1,4 @@
 <p align="center">
- <img src=".github/dbt-gloss.png" alt="dbt-pre-commit" width=600/>
  <h1 align="center">dbt-gloss</h1>
 </p>
 <p align="center">
