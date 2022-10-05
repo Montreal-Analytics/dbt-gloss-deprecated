@@ -13,8 +13,9 @@ REGEX_COMMENTS = (
     r"((\/\*|\{#)([^*]|[\r\n]|([\*#]+([^*\/#]|[\r\n])))*(\*+\/|#\})|[ \t]*--.*)"
 )
 REGEX_SPLIT = r"[\s]+"
-IGNORE_WORDS = ["", "(", "{{"]  # pragma: no mutate
+IGNORE_WORDS = ["", "(", "{{", "{"]  # pragma: no mutate
 REGEX_PARENTHESIS = r"([\(\)])"  # pragma: no mutate
+REGEX_BRACES = r"([\{\}])"  # pragma: no mutate
 
 
 def prev_cur_next_iter(
@@ -38,7 +39,11 @@ def replace_comments(sql: str) -> str:
 
 
 def add_space_to_parenthesis(sql: str) -> str:
-    return re.sub(REGEX_PARENTHESIS, r" \1 ", sql).replace('{{','{{ ').replace('}}',' }}')
+    return re.sub(REGEX_PARENTHESIS, r" \1 ", sql)
+
+
+def add_space_to_braces(sql: str) -> str:
+    return re.sub(REGEX_BRACES, r" \1 ", sql)
 
 
 def has_table_name(
@@ -47,6 +52,7 @@ def has_table_name(
     status_code = 0
     sql_clean = replace_comments(sql)
     sql_clean = add_space_to_parenthesis(sql_clean)
+    sql_clean = add_space_to_braces(sql_clean)
     sql_split = re.split(REGEX_SPLIT, sql_clean)
     tables = set()
     cte = set()
