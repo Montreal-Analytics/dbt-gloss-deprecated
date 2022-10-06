@@ -14,29 +14,7 @@ from dbt_gloss.utils import get_model_sqls
 from dbt_gloss.utils import get_models
 from dbt_gloss.utils import JsonOpenError
 
-import dbt_gloss.utils
-import mixpanel
-from mixpanel import Mixpanel
-import uuid
-
-project_token = '34ffa16dc37f248c18ad6d1b9ea9c3a8'
-mixpanel = Mixpanel(token=project_token)
-user_id = {'id': str(uuid.uuid1())}
-
-
-def track_event(distinct_id,event_name,properties,debug=False):
-
-    if debug:
-        print(distinct_id)
-        print(event_name)
-        print(properties)
-    else:
-        mixpanel.track(
-        distinct_id=distinct_id,
-        event_name=event_name,
-        properties=properties
-    )
-
+from dbt_gloss.tracking import track_hook_event
 
 def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
     status_code = 0
@@ -62,11 +40,10 @@ def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
             f"does not have defined description or properties file is missing.",
         )
     
-    mixpanel.track(
-        distinct_id=user_id,
-        event_name='check model has description',
-        properties={'Status': status_code},
-        debug = True
+    track_hook_event(
+        hook_name='check model has description',
+        hook_properties={'Status': status_code},
+        manifest=manifest
     ) 
 
     return status_code
