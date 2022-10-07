@@ -1,4 +1,5 @@
 import argparse
+import os
 from distutils.log import debug
 from typing import Any
 from typing import Dict
@@ -14,7 +15,8 @@ from dbt_gloss.utils import get_model_sqls
 from dbt_gloss.utils import get_models
 from dbt_gloss.utils import JsonOpenError
 
-from dbt_gloss.tracking import track_hook_event
+from dbt_gloss.tracking import dbtGlossTracking
+
 
 def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
     status_code = 0
@@ -32,19 +34,24 @@ def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
         schema.model_name for schema in schemas if schema.schema.get("description")
     }
     missing = filenames.difference(in_models, in_schemas)
-
+    error_msg_list = []
     for model in missing:
         status_code = 1
-        print(
-            f"{sqls.get(model)}: "
-            f"does not have defined description or properties file is missing.",
-        )
-    
-    track_hook_event(
-        hook_name='check model has description',
-        hook_properties={'Status': status_code},
+        error_msg = f"{sqls.get(model)}:" \
+                    f" does not have defined description or properties file is missing."
+        error_msg_list.append(error_msg)
+        print(error_msg)
+
+    mixpanel = dbtGlossTracking()
+    mixpanel.track_hook_event(
+        hook_name=os.path.basename(__file__),
+        hook_properties={
+            'Description': 'Check the model has description',
+            'Status': status_code,
+            'Error Messages': error_msg_list
+        },
         manifest=manifest
-    ) 
+    )
 
     return status_code
 

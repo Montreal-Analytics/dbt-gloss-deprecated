@@ -135,6 +135,7 @@ dmypy.json
 .pytype/
 
 .vscode
+.idea/
 manifest.json
 
 # Mutmut
