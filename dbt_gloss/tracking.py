@@ -4,7 +4,7 @@ import uuid
 from mixpanel import Mixpanel
 
 # Change to prod token upon merge
-PROJECT_TOKEN = '34ffa16dc37f248c18ad6d1b9ea9c3a8'
+PROJECT_TOKEN = ''
 
 # To do: Define the following variables based on functions
 # user_id = {'id': str(uuid.uuid1())}
