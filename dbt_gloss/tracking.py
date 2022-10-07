@@ -4,10 +4,8 @@ import uuid
 from mixpanel import Mixpanel
 
 # Change to prod token upon merge
-PROJECT_TOKEN = ''
+PROJECT_TOKEN = '34ffa16dc37f248c18ad6d1b9ea9c3a8'
 
-# To do: Define the following variables based on functions
-# user_id = {'id': str(uuid.uuid1())}
 class dbtGlossTracking ():
     def __init__(self):
         self.mixpanel = Mixpanel(token=PROJECT_TOKEN)
@@ -50,8 +48,3 @@ class dbtGlossTracking ():
             hook_properties['Status'] = f'Unknown Status: {hook_properties.get("Status")}'
         return hook_properties
 
-
-
-# Add hook properties to track event
-# Open PR for tracking
-# test this specific hook
