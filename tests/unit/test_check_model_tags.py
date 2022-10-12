@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.check_model_tags import main
+from dbt_gloss.check_model_tags import main
 
 
 TESTS = (

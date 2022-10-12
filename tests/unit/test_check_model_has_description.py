@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.check_model_has_description import main
+from dbt_gloss.check_model_has_description import main
 
 
 # Input args, valid manifest, expected return value

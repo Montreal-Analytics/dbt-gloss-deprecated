@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.generate_model_properties_file import main
+from dbt_gloss.generate_model_properties_file import main
 
 TESTS = (
     (

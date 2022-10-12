@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.check_model_has_properties_file import main
+from dbt_gloss.check_model_has_properties_file import main
 
 TESTS = (
     (["aa/bb/with_schema.sql"], True, 0),

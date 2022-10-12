@@ -12,7 +12,7 @@ Tutorial of publishing to help me not to forgot to anything :D
 Run pytests:
 
 ```
-pytest -vvv --cov=pre_commit_dbt --cov-config=setup.cfg --cov-report=term-missing --cov-report=html
+pytest -vvv --cov=dbt_gloss --cov-config=setup.cfg --cov-report=term-missing --cov-report=html
 ```
 
 Run pre-commit:
@@ -34,21 +34,21 @@ Bump version in Dockerfile - .github/.pre-commit-config-action.yaml
 Build:
 
 ```
-docker build . -t offbi/pre-commit-dbt
-docker tag offbi/pre-commit-dbt:latest offbi/pre-commit-dbt:<version>
+docker build . -t Montreal-Analytics/dbt-gloss
+docker tag Montreal-Analytics/dbt-gloss:latest Montreal-Analytics/dbt-gloss:<version>
 ```
 
 Test:
 
 ```
-docker run offbi/pre-commit-dbt
+docker run Montreal-Analytics/dbt-gloss
 ```
 
 Publish to Docker Hub
 
 ```
-docker push offbi/pre-commit-dbt
-docker push offbi/pre-commit-dbt:<version>
+docker push Montreal-Analytics/dbt-gloss
+docker push Montreal-Analytics/dbt-gloss:<version>
 ```
 
 ## 3. Github Action

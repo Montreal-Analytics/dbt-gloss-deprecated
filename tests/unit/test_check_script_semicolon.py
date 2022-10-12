@@ -1,6 +1,6 @@
 import pytest
 
-from pre_commit_dbt.check_script_semicolon import main
+from dbt_gloss.check_script_semicolon import main
 
 
 # Input, expected return value
