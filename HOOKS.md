@@ -1155,7 +1155,7 @@ Ensures that the source has a number of tests.
 
 #### Arguments
 
-`test-cnt`: Minimum number of tests required.
+`--test-cnt`: Minimum number of tests required.
 
 #### Example
 ```
