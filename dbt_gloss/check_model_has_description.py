@@ -1,7 +1,7 @@
 import argparse
 import os
 import time
-from distutils.log import debug
+
 from typing import Any
 from typing import Dict
 from typing import Optional
