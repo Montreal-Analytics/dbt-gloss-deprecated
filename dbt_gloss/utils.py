@@ -25,10 +25,6 @@ class JsonOpenError(RuntimeError):
     pass
 
 
-class APIError(Exception):
-    pass
-
-
 @dataclass
 class Model:
     model_id: str
