@@ -18,7 +18,7 @@ def test_check_model_description(
     input_args, valid_manifest, expected_status_code, manifest_path_str
 ):
     if valid_manifest:
-        input_args.extend(["--manifest", manifest_path_str, '--disable_tracking'])
+        input_args.extend(["--manifest", manifest_path_str])
     status_code = main(input_args)
     assert status_code == expected_status_code
 

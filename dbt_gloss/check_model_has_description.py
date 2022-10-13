@@ -22,7 +22,6 @@ from dbt_gloss.tracking import dbtGlossTracking
 
 
 def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
-    error_count = 0
     status_code = 0
     ymls = get_filenames(paths, [".yml", ".yaml"])
     sqls = get_model_sqls(paths, manifest)
@@ -40,22 +39,19 @@ def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
     missing = filenames.difference(in_models, in_schemas)
     for model in missing:
         status_code = 1
-        error_count += 1
         print(
             f"{sqls.get(model)}: "
             f"does not have defined description or properties file is missing.",
         )
 
-    metadata = {
+    hook_properties = {
         'status_code': status_code,
-        'object_count': len(list(models))+1,
-        'error_count': error_count
     }
 
-    return metadata
+    return hook_properties
 
 
-def tracking(manifest, hook_metadata, runtime, script_args):
+def tracking(manifest, hook_properties, execution_time, script_args):
 
     try:
         tracker = dbtGlossTracking()
@@ -65,10 +61,8 @@ def tracking(manifest, hook_metadata, runtime, script_args):
             event_properties={
                 'hook_name': os.path.basename(__file__),
                 'description': 'Check the model has description',
-                'status': hook_metadata.get('status_code'),
-                'object_count': hook_metadata.get('object_count'),
-                'error_count': hook_metadata.get('error_count'),
-                'execution_runtime': runtime,
+                'status': hook_properties.get('status_code'),
+                'execution_time': execution_time,
                 'is_pytest': script_args.get('is_test')
             },
             script_args=script_args,
@@ -93,17 +87,17 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
 
     start_time = time.time()
-    hook_metadata = has_description(paths=args.filenames, manifest=manifest)
+    hook_properies = has_description(paths=args.filenames, manifest=manifest)
     end_time = time.time()
 
     tracking(
         manifest=manifest,
-        hook_metadata=hook_metadata,
-        runtime=end_time - start_time,
+        hook_properties=hook_properies,
+        execution_time=end_time - start_time,
         script_args=vars(args)
     )
 
-    return hook_metadata.get('status_code')
+    return hook_properies.get('status_code')
 
 
 if __name__ == "__main__":

@@ -6,8 +6,6 @@ from mixpanel import Mixpanel
 class dbtGlossTracking:
     def __init__(self):
         self.token = '34ffa16dc37f248c18ad6d1b9ea9c3a8'
-        self.mixpanel = Mixpanel(token=self.token)
-        self.disable_anonymous_tracking = False
 
     def track_hook_event(
             self,
@@ -16,23 +14,31 @@ class dbtGlossTracking:
             manifest,
             script_args
     ):
-        self._parse_script_args(script_args)
-
-        if not self.disable_anonymous_tracking:
+        disable_tracking = script_args.get('disable_tracking', False)
+        if not disable_tracking:
             dbt_metadata = manifest.get("metadata")
             event_properties = self._property_transformations(
                 dbt_metadata,
                 event_properties
             )
-            self.mixpanel.track(
-                distinct_id=dbt_metadata.get('user_id'),
-                event_name=event_name,
-                properties=event_properties
-            )
+            try:
+                mixpanel = Mixpanel(token=self.token)
+                mixpanel.track(
+                    distinct_id=dbt_metadata.get('user_id'),
+                    event_name=event_name,
+                    properties=event_properties
+                )
+            except Exception as error:
+                print(f'Mixpanel Error: {error}')
 
-    def _parse_script_args(self, script_args):
-        disable_tracking = script_args.get('disable_tracking', False)
-        self.disable_anonymous_tracking = disable_tracking
+    @staticmethod
+    def _ignore_errors(func):
+        def decorate(*args, **kwargs):
+            try:
+                func(*args, **kwargs)
+            except Exception as error:
+                print(f'Mixpanel Error: {error}')
+        return decorate
 
     def _property_transformations(self, dbt_metadata, event_properties):
         event_properties.update(dbt_metadata)
