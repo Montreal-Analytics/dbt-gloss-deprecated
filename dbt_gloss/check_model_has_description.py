@@ -74,6 +74,7 @@ def tracking(manifest, hook_metadata, runtime, script_args):
             },
             is_test=script_args.get('is_test')
         )
+
     except APIError as error:
         print(f'Mixpanel Error: {error}')
 
@@ -85,7 +86,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     add_tracking_args(parser)
 
     args = parser.parse_args(argv)
-    print()
+
     try:
         manifest = get_json(args.manifest)
     except JsonOpenError as e:

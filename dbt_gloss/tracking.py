@@ -36,9 +36,7 @@ class dbtGlossTracking:
             hook_properties['Status'] = 'Success'
         elif hook_properties.get('Status') == 1:
             hook_properties['Status'] = 'Fail'
-        else:
-            hook_properties['Status'] = 'Unknown Status: ' \
-                                        f'{hook_properties.get("Status")}'
+
         return hook_properties
 
     @staticmethod
