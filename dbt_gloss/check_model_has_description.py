@@ -71,8 +71,8 @@ def tracking(manifest, hook_metadata, runtime, script_args):
                 'Object Count': hook_metadata.get('object_count'),
                 'Error Count': hook_metadata.get('error_count'),
                 'Execution Runtime': runtime,
-            },
-            is_test=script_args.get('is_test')
+                'Is Pytest': script_args.get('is_test')
+            }
         )
 
     except APIError as error:

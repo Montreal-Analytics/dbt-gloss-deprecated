@@ -5,9 +5,9 @@ from dbt_gloss.check_model_has_description import main
 
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["aa/bb/with_description.sql"], True, 0),
-    (["aa/bb/with_description.sql"], False, 1),
-    (["aa/bb/without_description.sql"], True, 1),
+    (["aa/bb/with_description.sql", '--is_test'], True, 0),
+    (["bb/bb/with_description.sql", '--is_test'], False, 1),
+    (["cc/bb/without_description.sql", '--is_test'], True, 1),
 )
 
 
@@ -18,7 +18,7 @@ def test_check_model_description(
     input_args, valid_manifest, expected_status_code, manifest_path_str
 ):
     if valid_manifest:
-        input_args.extend(["--manifest", manifest_path_str, '--is_test'])
+        input_args.extend(["--manifest", manifest_path_str])
     status_code = main(input_args)
     assert status_code == expected_status_code
 
@@ -41,7 +41,6 @@ models:
             str(yml_file),
             "--manifest",
             manifest_path_str,
-            '--is_test'
         ],
     )
     assert result == 0
