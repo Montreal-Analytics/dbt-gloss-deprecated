@@ -16,7 +16,6 @@ from dbt_gloss.utils import get_model_schemas
 from dbt_gloss.utils import get_model_sqls
 from dbt_gloss.utils import get_models
 from dbt_gloss.utils import JsonOpenError
-from dbt_gloss.utils import APIError
 
 from dbt_gloss.tracking import dbtGlossTracking
 
@@ -44,32 +43,7 @@ def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
             f"does not have defined description or properties file is missing.",
         )
 
-    hook_properties = {
-        'status_code': status_code,
-    }
-
-    return hook_properties
-
-
-def tracking(manifest, hook_properties, execution_time, script_args):
-
-    try:
-        tracker = dbtGlossTracking()
-        tracker.track_hook_event(
-            event_name='Hook Executed',
-            manifest=manifest,
-            event_properties={
-                'hook_name': os.path.basename(__file__),
-                'description': 'Check the model has description',
-                'status': hook_properties.get('status_code'),
-                'execution_time': execution_time,
-                'is_pytest': script_args.get('is_test')
-            },
-            script_args=script_args,
-        )
-
-    except APIError as error:
-        print(f'Mixpanel Error: {error}')
+    return {'status_code': status_code}
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -87,17 +61,25 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
 
     start_time = time.time()
-    hook_properies = has_description(paths=args.filenames, manifest=manifest)
+    hook_properties = has_description(paths=args.filenames, manifest=manifest)
     end_time = time.time()
+    script_args = vars(args)
 
-    tracking(
+    tracker = dbtGlossTracking()
+    tracker.track_hook_event(
+        event_name='Hook Executed',
         manifest=manifest,
-        hook_properties=hook_properies,
-        execution_time=end_time - start_time,
-        script_args=vars(args)
+        event_properties={
+            'hook_name': os.path.basename(__file__),
+            'description': 'Check the model has description',
+            'status': hook_properties.get('status_code'),
+            'execution_time': end_time - start_time,
+            'is_pytest': script_args.get('is_test')
+        },
+        script_args=script_args,
     )
 
-    return hook_properies.get('status_code')
+    return hook_properties.get('status_code')
 
 
 if __name__ == "__main__":
