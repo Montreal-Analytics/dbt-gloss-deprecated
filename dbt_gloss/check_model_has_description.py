@@ -65,13 +65,13 @@ def tracking(manifest, hook_metadata, runtime, script_args):
             event_name=hook_name,
             manifest=manifest,
             event_properties={
-                'Hook Name': hook_name,
-                'Description': 'Check the model has description',
-                'Status': hook_metadata.get('status_code'),
-                'Object Count': hook_metadata.get('object_count'),
-                'Error Count': hook_metadata.get('error_count'),
-                'Execution Runtime': runtime,
-                'Is Pytest': script_args.get('is_test')
+                'hook_name': hook_name,
+                'description': 'Check the model has description',
+                'status': hook_metadata.get('status_code'),
+                'object_count': hook_metadata.get('object_count'),
+                'error_count': hook_metadata.get('error_count'),
+                'execution_runtime': runtime,
+                'is_pytest': script_args.get('is_test')
             }
         )
 

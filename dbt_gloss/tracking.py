@@ -23,10 +23,7 @@ class dbtGlossTracking:
 
     def _property_transformations(self, dbt_metadata, event_properties):
         event_properties.update(dbt_metadata)
-        transformation_func = [
-            self._status_code_to_text,
-            self._format_key_to_titles
-        ]
+        transformation_func = [self._status_code_to_text]
 
         for function in transformation_func:
             event_properties = function(event_properties)
@@ -40,14 +37,5 @@ class dbtGlossTracking:
             transformed_properties['Status'] = 'Success'
         elif hook_properties.get('Status') == 1:
             transformed_properties['Status'] = 'Fail'
-
-        return transformed_properties
-
-    @staticmethod
-    def _format_key_to_titles(hook_properties):
-        transformed_properties = {}
-        for key, value in hook_properties.items():
-            new_key = key.replace('_', ' ').title()
-            transformed_properties[new_key] = value
 
         return transformed_properties
