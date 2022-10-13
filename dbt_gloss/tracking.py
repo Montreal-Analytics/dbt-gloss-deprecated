@@ -1,50 +1,50 @@
-from distutils.command.config import config
-from importlib.metadata import metadata
-import uuid
 from mixpanel import Mixpanel
 
-# Change to prod token upon merge
-PROJECT_TOKEN = '34ffa16dc37f248c18ad6d1b9ea9c3a8'
 
-class dbtGlossTracking ():
-    def __init__(self):
-        self.mixpanel = Mixpanel(token=PROJECT_TOKEN)
-        self.allow_anonymous_tracking = True
+class dbtGlossTracking:
+    def __init__(self, disable_anonymous_tracking):
+        self.token = '34ffa16dc37f248c18ad6d1b9ea9c3a8'
+        self.mixpanel = Mixpanel(token=self.token)
+        self.disable_anonymous_tracking = disable_anonymous_tracking
 
-    def format_properties(self, hook_properties, manifest):
-        metadata = manifest.get("metadata")
-        distinct_id = metadata.get('user_id')
-        metadata.update(hook_properties)
+    def track_hook_event(self, event_name, event_properties, manifest, is_test):
 
-        return distinct_id, metadata
-
-    def track_hook_event(self, hook_name, hook_properties, manifest):
-
-        config = self.allow_anonymous_tracking
-        event_properties = self._property_transformations(hook_properties)
-
-        distinct_id, properties = self.format_properties(event_properties, manifest)
-        if config:
+        if not self.disable_anonymous_tracking:
+            dbt_metadata = manifest.get("metadata")
+            event_properties = self._property_transformations(
+                dbt_metadata,
+                event_properties,
+                is_test=is_test
+            )
             self.mixpanel.track(
-                distinct_id=distinct_id,
-                event_name=hook_name,
-                properties=properties
+                distinct_id=dbt_metadata.get('user_id'),
+                event_name=event_name,
+                properties=event_properties
             )
 
-    def _property_transformations(self, hook_properties):
-        transformation_func = [self._status_code_to_text]
+    def _property_transformations(self, dbt_metadata, event_properties, **kwargs):
+        transformation_func = [self._status_code_to_text, self._is_test]
         for function in transformation_func:
-            hook_properties = function(hook_properties)
+            event_properties = function(event_properties, kwargs)
 
-        return hook_properties
+        event_properties.update(dbt_metadata)
+        return event_properties
 
     @staticmethod
-    def _status_code_to_text(hook_properties):
+    def _status_code_to_text(hook_properties, kwargs):
         if hook_properties.get('Status') == 0:
             hook_properties['Status'] = 'Success'
         elif hook_properties.get('Status') == 1:
             hook_properties['Status'] = 'Fail'
         else:
-            hook_properties['Status'] = f'Unknown Status: {hook_properties.get("Status")}'
+            hook_properties['Status'] = 'Unknown Status: ' \
+                                        f'{hook_properties.get("Status")}'
         return hook_properties
 
+    @staticmethod
+    def _is_test(hook_properties, kwargs):
+        is_test = kwargs.get('is_test')
+        if is_test:
+            hook_properties['Is Pytest'] = is_test
+
+        return hook_properties

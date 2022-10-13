@@ -25,6 +25,10 @@ class JsonOpenError(RuntimeError):
     pass
 
 
+class APIError(Exception):
+    pass
+
+
 @dataclass
 class Model:
     model_id: str
@@ -320,6 +324,23 @@ def add_manifest_args(parser: argparse.ArgumentParser) -> NoReturn:
         help="""Location of manifest.json file. Usually target/manifest.json.
         This file contains a full representation of dbt project.
         """,
+    )
+
+
+def add_tracking_args(
+        parser: argparse.ArgumentParser
+) -> NoReturn:
+    parser.add_argument(
+        "--disable_tracking",
+        action='store_true',
+        help="""Whether this invocation sent anonymous usage statistics 
+        while executing.
+        """,
+    )
+    parser.add_argument(
+        "--is_test",
+        action='store_true',
+        help="True the execution is a test.",
     )
 
 
