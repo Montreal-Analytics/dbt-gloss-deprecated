@@ -1,13 +1,22 @@
+import os
+
 from mixpanel import Mixpanel
 
 
 class dbtGlossTracking:
-    def __init__(self, disable_anonymous_tracking):
+    def __init__(self):
         self.token = '34ffa16dc37f248c18ad6d1b9ea9c3a8'
         self.mixpanel = Mixpanel(token=self.token)
-        self.disable_anonymous_tracking = disable_anonymous_tracking
+        self.disable_anonymous_tracking = False
 
-    def track_hook_event(self, event_name, event_properties, manifest):
+    def track_hook_event(
+            self,
+            event_name,
+            event_properties,
+            manifest,
+            script_args
+    ):
+        self._parse_script_args(script_args)
 
         if not self.disable_anonymous_tracking:
             dbt_metadata = manifest.get("metadata")
@@ -21,9 +30,16 @@ class dbtGlossTracking:
                 properties=event_properties
             )
 
+    def _parse_script_args(self, script_args):
+        disable_tracking = script_args.get('disable_tracking', False)
+        self.disable_anonymous_tracking = disable_tracking
+
     def _property_transformations(self, dbt_metadata, event_properties):
         event_properties.update(dbt_metadata)
-        transformation_func = [self._status_code_to_text]
+        transformation_func = [
+            self._status_code_to_text,
+            self._remove_ext_in_hook_name
+        ]
 
         for function in transformation_func:
             event_properties = function(event_properties)
@@ -33,9 +49,17 @@ class dbtGlossTracking:
     @staticmethod
     def _status_code_to_text(hook_properties):
         transformed_properties = hook_properties
-        if hook_properties.get('Status') == 0:
-            transformed_properties['Status'] = 'Success'
-        elif hook_properties.get('Status') == 1:
-            transformed_properties['Status'] = 'Fail'
+        if hook_properties.get('status') == 0:
+            transformed_properties['status'] = 'Success'
+        elif hook_properties.get('status') == 1:
+            transformed_properties['status'] = 'Fail'
+
+        return transformed_properties
+
+    @staticmethod
+    def _remove_ext_in_hook_name(hook_properties):
+        transformed_properties = hook_properties
+        transformed_properties['hook_name'] = os.path.splitext(
+            transformed_properties.get('hook_name'))[0]
 
         return transformed_properties

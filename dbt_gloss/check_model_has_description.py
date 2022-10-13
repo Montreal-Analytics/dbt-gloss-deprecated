@@ -56,23 +56,22 @@ def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
 
 
 def tracking(manifest, hook_metadata, runtime, script_args):
-    hook_name = os.path.splitext(os.path.basename(__file__))[0]
-    disable_tracking = script_args.get('disable_tracking', False)
 
     try:
-        mixpanel = dbtGlossTracking(disable_tracking)
-        mixpanel.track_hook_event(
-            event_name=hook_name,
+        tracker = dbtGlossTracking()
+        tracker.track_hook_event(
+            event_name='Hook Executed',
             manifest=manifest,
             event_properties={
-                'hook_name': hook_name,
+                'hook_name': os.path.basename(__file__),
                 'description': 'Check the model has description',
                 'status': hook_metadata.get('status_code'),
                 'object_count': hook_metadata.get('object_count'),
                 'error_count': hook_metadata.get('error_count'),
                 'execution_runtime': runtime,
                 'is_pytest': script_args.get('is_test')
-            }
+            },
+            script_args=script_args,
         )
 
     except APIError as error:
