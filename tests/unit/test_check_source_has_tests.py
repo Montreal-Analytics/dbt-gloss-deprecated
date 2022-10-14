@@ -14,7 +14,7 @@ sources:
         description: test description
     """,
         True,
-        ["--test-cnt", "1"],
+        ["--test-cnt", "1", '--is_test'],
         0,
     ),
     (
@@ -26,7 +26,7 @@ sources:
         description: test description
     """,
         True,
-        [],
+        ['--is_test'],
         0,
     ),
     (
@@ -38,7 +38,7 @@ sources:
         description: test description
     """,
         False,
-        ["--test-cnt", "1"],
+        ["--test-cnt", "1", '--is_test'],
         1,
     ),
     (
@@ -50,7 +50,7 @@ sources:
         description: test description
     """,
         True,
-        ["--test-cnt", "1"],
+        ["--test-cnt", "1", '--is_test'],
         1,
     ),
     (
@@ -62,7 +62,7 @@ sources:
         description: test description
     """,
         True,
-        ["--test-cnt", "1"],
+        ["--test-cnt", "1", '--is_test'],
         0,
     ),
 )

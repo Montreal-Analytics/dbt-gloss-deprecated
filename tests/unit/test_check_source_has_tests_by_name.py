@@ -13,7 +13,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", "data=1"],
+        ["--tests", "unique=1", "data=1", '--is_test'],
         True,
         0,
     ),
@@ -25,7 +25,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", "data=1"],
+        ["--tests", "unique=1", "data=1", '--is_test'],
         False,
         1,
     ),
@@ -37,7 +37,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1"],
+        ["--tests", "unique=1", '--is_test'],
         True,
         0,
     ),
@@ -49,7 +49,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "data=1"],
+        ["--tests", "data=1", '--is_test'],
         True,
         0,
     ),
@@ -61,7 +61,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=2"],
+        ["--tests", "unique=2", '--is_test'],
         True,
         1,
     ),
@@ -76,7 +76,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", "data=foo"],
+        ["--tests", "unique=1", "data=foo", '--is_test'],
         True,
     ),
 )

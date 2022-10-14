@@ -13,7 +13,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "schema=1", "data=1"],
+        ["--tests", "schema=1", "data=1", '--is_test'],
         True,
         0,
     ),
@@ -25,7 +25,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "schema=1", "data=1"],
+        ["--tests", "schema=1", "data=1", '--is_test'],
         False,
         1,
     ),
@@ -37,7 +37,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "schema=1"],
+        ["--tests", "schema=1", '--is_test'],
         True,
         0,
     ),
@@ -49,7 +49,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "schema=2"],
+        ["--tests", "schema=2", '--is_test'],
         True,
         1,
     ),
@@ -64,7 +64,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "schma=1", "data=1"],
+        ["--tests", "schma=1", "data=1", '--is_test'],
         True,
     ),
     (
@@ -75,7 +75,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "schema=1", "data=foo"],
+        ["--tests", "schema=1", "data=foo", '--is_test'],
         True,
     ),
 )

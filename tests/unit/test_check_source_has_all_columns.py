@@ -95,10 +95,15 @@ sources:
     ("input_schema", "valid_catalog", "expected_status_code"), TESTS
 )
 def test_check_source_columns_have_desc(
-    input_schema, valid_catalog, expected_status_code, catalog_path_str, tmpdir
+    input_schema,
+    valid_catalog,
+    expected_status_code,
+    catalog_path_str,
+    tmpdir,
+    manifest_path_str
 ):
     yml_file = tmpdir.join("schema.yml")
-    input_args = [str(yml_file)]
+    input_args = [str(yml_file), "--manifest", manifest_path_str, '--is_test']
     yml_file.write(input_schema)
     if valid_catalog:
         input_args.extend(["--catalog", catalog_path_str])

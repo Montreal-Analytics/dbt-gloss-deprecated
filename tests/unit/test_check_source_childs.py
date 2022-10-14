@@ -14,7 +14,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--min-child-cnt", "1"],
+        ["--min-child-cnt", "1", '--is_test'],
         True,
         0,
     ),
@@ -26,7 +26,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--min-child-cnt", "1"],
+        ["--min-child-cnt", "1", '--is_test'],
         False,
         1,
     ),
@@ -38,7 +38,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--max-child-cnt", "1"],
+        ["--max-child-cnt", "1", '--is_test'],
         True,
         1,
     ),
@@ -50,7 +50,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--min-child-cnt", "5"],
+        ["--min-child-cnt", "5", '--is_test'],
         True,
         1,
     ),
@@ -62,7 +62,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--max-child-cnt", "5"],
+        ["--max-child-cnt", "5", '--is_test'],
         True,
         0,
     ),
@@ -79,6 +79,7 @@ sources:
             "1",
             "--max-child-cnt",
             "3",
+            '--is_test'
         ],
         True,
         0,

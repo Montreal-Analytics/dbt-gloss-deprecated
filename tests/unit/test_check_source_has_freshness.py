@@ -113,8 +113,20 @@ sources:
 
 
 @pytest.mark.parametrize(("input_schema", "expected_status_code"), TESTS)
-def test_check_source_has_freshness(input_schema, expected_status_code, tmpdir):
+def test_check_source_has_freshness(
+        input_schema, expected_status_code, tmpdir, manifest_path_str
+):
     yml_file = tmpdir.join("schema.yml")
     yml_file.write(input_schema)
-    status_code = main(argv=[str(yml_file), "--freshness", "error_after", "warn_after"])
+    status_code = main(
+        argv=[
+            str(yml_file),
+            "--freshness",
+            "error_after",
+            "warn_after",
+            "--manifest",
+            manifest_path_str,
+            '--is_test'
+        ]
+    )
     assert status_code == expected_status_code

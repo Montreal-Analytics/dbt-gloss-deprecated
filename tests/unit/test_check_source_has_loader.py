@@ -28,8 +28,15 @@ sources:
 
 
 @pytest.mark.parametrize(("input_schema", "expected_status_code"), TESTS)
-def test_check_source_has_loader(input_schema, expected_status_code, tmpdir):
+def test_check_source_has_loader(
+        input_schema, expected_status_code, tmpdir, manifest_path_str
+):
     yml_file = tmpdir.join("schema.yml")
     yml_file.write(input_schema)
-    status_code = main(argv=[str(yml_file)])
+    status_code = main(argv=[
+        str(yml_file),
+        '--is_test',
+        "--manifest",
+        manifest_path_str]
+    )
     assert status_code == expected_status_code
