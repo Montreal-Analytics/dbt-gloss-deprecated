@@ -6,10 +6,10 @@ from dbt_gloss.check_macro_arguments_have_desc import main
 
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["macros/aa/with_argument_description.sql"], True, 0),
-    (["macros/aa/with_argument_description.sql"], False, 1),
-    (["macros/aa/without_arguments_description.sql"], True, 1),
-    (["macros/aa/with_some_argument_description.sql"], True, 1),
+    (["macros/aa/with_argument_description.sql", '--is_test'], True, 0),
+    (["macros/aa/with_argument_description.sql", '--is_test'], False, 1),
+    (["macros/aa/without_arguments_description.sql", '--is_test'], True, 1),
+    (["macros/aa/with_some_argument_description.sql", '--is_test'], True, 1),
 )
 
 
@@ -44,6 +44,7 @@ macros:
         argv=[
             "in_schema_argument_description.sql",
             str(yml_file),
+            '--is_test',
             "--manifest",
             manifest_path_str,
         ],
@@ -65,9 +66,12 @@ macros:
     """
     yml_file = tmpdir.join(f"schema.{extension}")
     yml_file.write(schema_yml)
-    res_stat, missing = check_argument_desc(
-        ["macros/aa/with_some_argument_description.sql", str(yml_file)], manifest
+    hook_properties = check_argument_desc(
+        ["macros/aa/with_some_argument_description.sql", str(yml_file),'--is_test'], 
+        manifest
     )
+    res_stat = hook_properties['status_code']
+    missing = hook_properties['missing']
     assert res_stat == 1
     assert missing == {"with_some_argument_description": {"test2"}}
 
@@ -95,6 +99,7 @@ macros:
             str(yml_file),
             "--manifest",
             manifest_path_str,
+            '--is_test'
         ],
     )
     assert result == 1
@@ -121,6 +126,7 @@ macros:
             str(yml_file),
             "--manifest",
             manifest_path_str,
+            '--is_test'
         ],
     )
     assert result == 0

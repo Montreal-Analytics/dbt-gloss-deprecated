@@ -5,9 +5,9 @@ from dbt_gloss.check_macro_has_description import main
 
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["macros/aa/with_description.sql"], True, 0),
-    (["macros/aa/with_description.sql"], False, 1),
-    (["macros/aa/without_description.sql"], True, 1),
+    (["macros/aa/with_description.sql", '--is_test'], True, 0),
+    (["macros/aa/with_description.sql", '--is_test'], False, 1),
+    (["macros/aa/without_description.sql", '--is_test'], True, 1),
 )
 
 
