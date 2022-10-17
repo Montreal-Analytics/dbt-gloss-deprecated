@@ -6,10 +6,10 @@ from dbt_gloss.check_model_columns_have_desc import main
 
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["aa/bb/with_column_description.sql"], True, 0),
-    (["aa/bb/with_column_description.sql"], False, 1),
-    (["aa/bb/without_columns_description.sql"], True, 1),
-    (["aa/bb/with_some_column_description.sql"], True, 1),
+    (["aa/bb/with_column_description.sql",'--is_test'], True, 0),
+    (["aa/bb/with_column_description.sql",'--is_test'], False, 1),
+    (["aa/bb/without_columns_description.sql",'--is_test'], True, 1),
+    (["aa/bb/with_some_column_description.sql",'--is_test'], True, 1),
 )
 
 

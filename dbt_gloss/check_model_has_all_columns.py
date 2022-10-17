@@ -1,4 +1,6 @@
 import argparse
+import os
+import time
 from typing import Any
 from typing import Dict
 from typing import Optional
@@ -9,10 +11,13 @@ from typing import Tuple
 from dbt_gloss.utils import add_catalog_args
 from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_manifest_args
+from dbt_gloss.utils import add_tracking_args
 from dbt_gloss.utils import get_json
 from dbt_gloss.utils import get_model_sqls
 from dbt_gloss.utils import get_models
 from dbt_gloss.utils import JsonOpenError
+
+from dbt_gloss.tracking import dbtGlossTracking
 
 
 def compare_columns(
@@ -81,6 +86,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     add_filenames_args(parser)
     add_manifest_args(parser)
     add_catalog_args(parser)
+    add_tracking_args(parser)
 
     args = parser.parse_args(argv)
 
@@ -95,6 +101,25 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     except JsonOpenError as e:
         print(f"Unable to load catalog file ({e})")
         return 1
+    
+    start_time = time.time()
+    status_code = check_model_columns(paths=args.filenames, manifest=manifest, catalog=catalog)
+    end_time = time.time()
+    script_args = vars(args)
+
+    tracker = dbtGlossTracking()
+    tracker.track_hook_event(
+        event_name='Hook Executed',
+        manifest=manifest,
+        event_properties={
+            'hook_name': os.path.basename(__file__),
+            'description': 'Check model has all columns',
+            'status': status_code,
+            'execution_time': end_time - start_time,
+            'is_pytest': script_args.get('is_test')
+        },
+        script_args=script_args,
+    )
 
     return check_model_columns(paths=args.filenames, manifest=manifest, catalog=catalog)
 

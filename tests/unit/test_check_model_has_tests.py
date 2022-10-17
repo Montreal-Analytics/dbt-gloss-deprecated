@@ -6,12 +6,12 @@ from dbt_gloss.check_model_has_tests import main
 # Input schema, input_args, valid_manifest, expected return value
 # Input args, valid manifest, expected return value
 TESTS = (  # type: ignore
-    (["aa/bb/with_test1.sql"], ["--test-cnt", "1"], True, 0),
-    (["aa/bb/with_test1.sql"], ["--test-cnt", "2"], True, 0),
-    (["aa/bb/with_test1.sql"], [], True, 0),
-    (["aa/bb/with_test1.sql"], ["--test-cnt", "3"], True, 1),
-    (["aa/bb/without_test.sql"], ["--test-cnt", "1"], True, 1),
-    (["aa/bb/with_test1.sql"], ["--test-cnt", "1"], False, 1),
+    (["aa/bb/with_test1.sql",'--is_test'], ["--test-cnt", "1"], True, 0),
+    (["aa/bb/with_test1.sql",'--is_test'], ["--test-cnt", "2"], True, 0),
+    (["aa/bb/with_test1.sql",'--is_test'], [], True, 0),
+    (["aa/bb/with_test1.sql",'--is_test'], ["--test-cnt", "3"], True, 1),
+    (["aa/bb/without_test.sql",'--is_test'], ["--test-cnt", "1"], True, 1),
+    (["aa/bb/with_test1.sql",'--is_test'], ["--test-cnt", "1"], False, 1),
 )
 
 
