@@ -3,9 +3,9 @@ import pytest
 from dbt_gloss.check_model_has_properties_file import main
 
 TESTS = (
-    (["aa/bb/with_schema.sql"], True, 0),
-    (["aa/bb/with_schema.sql"], False, 1),
-    (["aa/bb/without_schema.sql"], True, 1),
+    (["aa/bb/with_schema.sql",'--is_test'], True, 0),
+    (["aa/bb/with_schema.sql",'--is_test'], False, 1),
+    (["aa/bb/without_schema.sql",'--is_test'], True, 1),
 )
 
 

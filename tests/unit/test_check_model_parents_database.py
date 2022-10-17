@@ -6,20 +6,20 @@ from dbt_gloss.check_model_parents_database import main
 # Input schema, input_args, valid_manifest, expected return value
 # Input args, valid manifest, expected return value
 TESTS = (  # type: ignore
-    (["aa/bb/parent_child.sql"], [], True, 1),
-    (["aa/bb/parent_child.sql"], [], True, 1),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "prod", "prod2", "core"], True, 0),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "prod", "prod2"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "prod"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "dev", "core"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "prod", "prod2", "core"], False, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "dev", "dev1"], True, 0),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "prod", "prod2", "dev1"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "prod", "prod2", "core"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "core"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "prod2"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "prod"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "dev"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], [], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], [], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "prod", "prod2", "core"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "prod", "prod2"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "prod"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "dev", "core"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "prod", "prod2", "core"], False, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "dev", "dev1"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "prod", "prod2", "dev1"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "prod", "prod2", "core"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "core"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "prod2"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "prod"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "dev"], True, 0),
 )
 
 

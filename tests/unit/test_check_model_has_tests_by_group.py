@@ -6,27 +6,27 @@ from dbt_gloss.check_model_has_tests_by_group import main
 # Input schema, input_args, valid_manifest, expected return value
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["aa/bb/with_test1.sql"], ["--tests", "unique", "--test-cnt", "1"], True, 0),
+    (["aa/bb/with_test1.sql",'--is_test'], ["--tests", "unique", "--test-cnt", "1"], True, 0),
     (
-        ["aa/bb/with_test3.sql"],
+        ["aa/bb/with_test3.sql",'--is_test'],
         ["--tests", "unique", "unique_where", "--test-cnt", "1"],
         True,
         0,
     ),
     (
-        ["aa/bb/with_test3.sql"],
+        ["aa/bb/with_test3.sql",'--is_test'],
         ["--tests", "unique", "unique_where", "--test-cnt", "2"],
         True,
         0,
     ),
     (
-        ["aa/bb/with_test1.sql"],
+        ["aa/bb/with_test1.sql",'--is_test'],
         ["--tests", "unique", "unique_where", "--test-cnt", "2"],
         True,
         1,
     ),
-    (["aa/bb/with_test1.sql"], ["--tests", "unique", "--test-cnt", "2"], True, 1),
-    (["aa/bb/with_test3.sql"], ["--tests", "unique", "--test-cnt", "1"], False, 1),
+    (["aa/bb/with_test1.sql",'--is_test'], ["--tests", "unique", "--test-cnt", "2"], True, 1),
+    (["aa/bb/with_test3.sql",'--is_test'], ["--tests", "unique", "--test-cnt", "1"], False, 1),
 )
 
 ERROR_TESTS = (

@@ -6,40 +6,40 @@ from dbt_gloss.check_model_parents_schema import main
 # Input schema, input_args, valid_manifest, expected return value
 # Input args, valid manifest, expected return value
 TESTS = (  # type: ignore
-    (["aa/bb/parent_child.sql"], [], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], [], True, 1),
     (
-        ["aa/bb/parent_child.sql"],
+        ["aa/bb/parent_child.sql",'--is_test'],
         ["--whitelist", "source1", "source2", "test"],
         True,
         0,
     ),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "source1", "source2"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "source1"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "source2"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--whitelist", "dev", "test"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "source1", "source2"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "source1"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "source2"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--whitelist", "dev", "test"], True, 1),
     (
-        ["aa/bb/parent_child.sql"],
+        ["aa/bb/parent_child.sql",'--is_test'],
         ["--whitelist", "source1", "source2", "test"],
         False,
         1,
     ),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "dev", "dev1"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "dev", "dev1"], True, 0),
     (
-        ["aa/bb/parent_child.sql"],
+        ["aa/bb/parent_child.sql",'--is_test'],
         ["--blacklist", "source1", "source2", "dev1"],
         True,
         1,
     ),
     (
-        ["aa/bb/parent_child.sql"],
+        ["aa/bb/parent_child.sql",'--is_test'],
         ["--blacklist", "source1", "source2", "test"],
         True,
         1,
     ),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "source1"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "source2"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "test"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--blacklist", "dev"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "source1"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "source2"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "test"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--blacklist", "dev"], True, 0),
 )
 
 

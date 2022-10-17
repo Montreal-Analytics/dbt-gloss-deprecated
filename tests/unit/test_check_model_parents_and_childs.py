@@ -6,17 +6,17 @@ from dbt_gloss.check_model_parents_and_childs import main
 # Input schema, input_args, valid_manifest, expected return value
 # Input args, valid manifest, expected return value
 TESTS = (  # type: ignore
-    (["aa/bb/parent_child.sql"], ["--min-parent-cnt", "1"], True, 0),
-    (["aa/bb/parent_child.sql"], ["--min-parent-cnt", "1"], False, 1),
-    (["aa/bb/parent_child.sql"], ["--max-parent-cnt", "1"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--min-parent-cnt", "5"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--max-parent-cnt", "5"], True, 0),
-    (["aa/bb/parent_child.sql"], ["--min-child-cnt", "1"], True, 0),
-    (["aa/bb/parent_child.sql"], ["--max-child-cnt", "1"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--min-child-cnt", "5"], True, 1),
-    (["aa/bb/parent_child.sql"], ["--max-child-cnt", "5"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--min-parent-cnt", "1"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--min-parent-cnt", "1"], False, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--max-parent-cnt", "1"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--min-parent-cnt", "5"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--max-parent-cnt", "5"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--min-child-cnt", "1"], True, 0),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--max-child-cnt", "1"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--min-child-cnt", "5"], True, 1),
+    (["aa/bb/parent_child.sql",'--is_test'], ["--max-child-cnt", "5"], True, 0),
     (
-        ["aa/bb/parent_child.sql"],
+        ["aa/bb/parent_child.sql",'--is_test'],
         [
             "--min-parent-cnt",
             "3",
@@ -31,7 +31,7 @@ TESTS = (  # type: ignore
         0,
     ),
     (
-        ["aa/bb/ref1.sql"],
+        ["aa/bb/ref1.sql",'--is_test'],
         [
             "--min-child-cnt",
             "3",
@@ -46,7 +46,7 @@ TESTS = (  # type: ignore
         1,
     ),
     (
-        ["aa/bb/parent_child.sql"],
+        ["aa/bb/parent_child.sql",'--is_test'],
         ["--min-child-cnt", "1", "--min-parent-cnt", "1"],
         True,
         0,
