@@ -39,6 +39,7 @@ models:
         argv=[
             "in_schema_desc.sql",
             str(yml_file),
+            "--is_test",
             "--manifest",
             manifest_path_str,
         ],

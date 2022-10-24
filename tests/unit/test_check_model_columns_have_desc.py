@@ -42,6 +42,7 @@ models:
         argv=[
             "in_schema_column_description.sql",
             str(yml_file),
+            "--is_test",
             "--manifest",
             manifest_path_str,
         ],
@@ -91,6 +92,7 @@ models:
             "with_some_column_description.sql",
             "without_columns_description.sql",
             str(yml_file),
+            "--is_test",
             "--manifest",
             manifest_path_str,
         ],
@@ -117,6 +119,7 @@ models:
         argv=[
             "without_columns_description.sql",
             str(yml_file),
+            "--is_test",
             "--manifest",
             manifest_path_str,
         ],

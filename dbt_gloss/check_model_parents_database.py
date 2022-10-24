@@ -110,13 +110,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         script_args=script_args,
     )     
 
-    return check_parents_database(
-        paths=args.filenames,
-        manifest=manifest,
-        blacklist=args.blacklist,
-        whitelist=args.whitelist,
-    )
-
+    return status_code
 
 if __name__ == "__main__":
     exit(main())

@@ -122,10 +122,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         script_args=script_args,
     ) 
 
-    return check_test_cnt(
-        paths=args.filenames, manifest=manifest, required_tests=required_tests
-    )  
-
+    return status_code
 
 if __name__ == "__main__":
     exit(main())

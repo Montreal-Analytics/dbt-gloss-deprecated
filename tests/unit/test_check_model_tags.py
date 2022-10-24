@@ -4,12 +4,12 @@ from dbt_gloss.check_model_tags import main
 
 
 TESTS = (
-    (["aa/bb/with_tags.sql", "--tags", "foo", "bar",'--is_test'], True, 0),
-    (["aa/bb/with_tags_foo.sql", "--tags", "foo", "bar",'--is_test'], True, 0),
-    (["aa/bb/with_tags_foo.sql", "--tags", "bar",'--is_test'], True, 1),
-    (["aa/bb/with_tags_empty.sql", "--tags", "bar",'--is_test'], True, 0),
-    (["aa/bb/without_tags.sql", "--tags", "foo", "bar",'--is_test'], True, 0),
-    (["aa/bb/without_tags.sql", "--tags", "foo", "bar",'--is_test'], False, 1),
+    (["aa/bb/with_tags.sql",'--is_test', "--tags", "foo", "bar"], True, 0),
+    (["aa/bb/with_tags_foo.sql",'--is_test', "--tags", "foo", "bar"], True, 0),
+    (["aa/bb/with_tags_foo.sql",'--is_test', "--tags", "bar"], True, 1),
+    (["aa/bb/with_tags_empty.sql",'--is_test', "--tags", "bar"], True, 0),
+    (["aa/bb/without_tags.sql",'--is_test', "--tags", "foo", "bar"], True, 0),
+    (["aa/bb/without_tags.sql",'--is_test', "--tags", "foo", "bar"], False, 1),
 )
 
 
@@ -42,6 +42,7 @@ models:
         argv=[
             "in_schema_tags.sql",
             str(yml_file),
+            "--is_test",
             "--tags",
             "foo",
             "bar",

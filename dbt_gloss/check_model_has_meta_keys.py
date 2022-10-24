@@ -74,7 +74,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
 
     start_time = time.time()
-    status_code = has_meta_key(paths=args.filenames, manifest=manifest,  meta_keys=args.meta_keys)
+    status_code = has_meta_key(paths=args.filenames, manifest=manifest, meta_keys=args.meta_keys)
     end_time = time.time()
     script_args = vars(args)
 
@@ -92,9 +92,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         script_args=script_args,
     )    
 
-    return has_meta_key(
-        paths=args.filenames, manifest=manifest, meta_keys=args.meta_keys
-    )
+    return status_code
 
 
 if __name__ == "__main__":

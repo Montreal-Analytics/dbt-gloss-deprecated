@@ -45,6 +45,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
     add_filenames_args(parser)
     add_manifest_args(parser)
+    add_tracking_args(parser)
 
     parser.add_argument(
         "--tags",
@@ -80,7 +81,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         script_args=script_args,
     )         
 
-    return validate_tags(paths=args.filenames, manifest=manifest, tags=args.tags)
+    return status_code
 
 
 if __name__ == "__main__":

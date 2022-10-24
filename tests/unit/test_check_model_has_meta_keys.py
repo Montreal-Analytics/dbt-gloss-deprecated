@@ -4,9 +4,9 @@ from dbt_gloss.check_model_has_meta_keys import main
 
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["aa/bb/with_meta.sql", "--meta-keys", "foo", "bar",'--is_test'], True, 0),
-    (["aa/bb/with_meta.sql", "--meta-keys", "foo", "bar",'--is_test'], False, 1),
-    (["aa/bb/without_meta.sql", "--meta-keys", "foo", "bar",'--is_test'], True, 1),
+    (["aa/bb/with_meta.sql",'--is_test', "--meta-keys", "foo", "bar"], True, 0),
+    (["aa/bb/with_meta.sql",'--is_test', "--meta-keys", "foo", "bar"], False, 1),
+    (["aa/bb/without_meta.sql",'--is_test', "--meta-keys", "foo", "bar"], True, 1),
 )
 
 
@@ -40,6 +40,7 @@ models:
         argv=[
             "in_schema_meta.sql",
             str(yml_file),
+            "--is_test",
             "--meta-keys",
             "foo",
             "bar",

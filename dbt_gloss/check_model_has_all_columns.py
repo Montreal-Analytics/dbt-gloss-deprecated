@@ -121,7 +121,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         script_args=script_args,
     )
 
-    return check_model_columns(paths=args.filenames, manifest=manifest, catalog=catalog)
+    return status_code
 
 
 if __name__ == "__main__":

@@ -110,12 +110,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         script_args=script_args,
     )        
 
-    return check_test_cnt(
-        paths=args.filenames,
-        manifest=manifest,
-        test_group=args.tests,
-        test_cnt=args.test_cnt,
-    )
+    return status_code
 
 
 if __name__ == "__main__":

@@ -151,10 +151,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         script_args=script_args,
     ) 
 
-    return check_child_parent_cnt(
-        paths=args.filenames, manifest=manifest, required_cnt=required_cnt
-    )
-
+    return status_code
 
 if __name__ == "__main__":
     exit(main())
