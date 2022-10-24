@@ -111,7 +111,11 @@ def test_check_script_ref_and_source(
     path = tmpdir.join("file.sql")
     path.write_text(input_s, "utf-8")
     manifest = get_json(manifest_path_str)
-    ret, models, sources = check_refs_sources(paths=[path], manifest=manifest)
+    hook_properties = check_refs_sources(paths=[path], manifest=manifest)
+
+    ret = hook_properties.get("status_code")
+    models = hook_properties.get("models")
+    sources = hook_properties.get("sources")
 
     assert ret == expected_status_code
     assert models == missing_models
@@ -130,7 +134,7 @@ def test_check_script_ref_and_source_integration(
         manifest_args = ["--manifest", manifest_path_str]
     else:
         manifest_args = []
-    input_args = [str(path)]
+    input_args = [str(path), "--is_test"]
     input_args.extend(manifest_args)
     ret = main(input_args)
 

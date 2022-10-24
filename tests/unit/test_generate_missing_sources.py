@@ -159,7 +159,7 @@ def test_create_missing_sources(
     else:
         manifest_args = []
     schema_file = str(schema) if valid_schema else "ff"
-    input_args = [str(path), "--schema-file", schema_file]
+    input_args = [str(path), "--schema-file", schema_file, "--is_test"]
     input_args.extend(manifest_args)
     ret = main(input_args)
 

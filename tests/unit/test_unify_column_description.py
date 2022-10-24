@@ -252,11 +252,16 @@ models:
     ("schema_yml", "expected_status_code", "expected_result", "ignore"), TESTS
 )
 def test_replace_column_description(
-    schema_yml, expected_status_code, expected_result, ignore, tmpdir
+    schema_yml, expected_status_code, expected_result, ignore, tmpdir, manifest_path_str
 ):
     yml_file = tmpdir.join("schema.yml")
     yml_file.write(schema_yml)
-    input_args = [str(yml_file)]
+    input_args = [
+        str(yml_file),
+        "--is_test",
+        "--manifest",
+        manifest_path_str,
+    ]
     input_args.extend(ignore)
     status_code = main(input_args)
     result = yml_file.read_text("utf-8")
@@ -264,7 +269,7 @@ def test_replace_column_description(
     assert expected_result == result
 
 
-def test_replace_column_description_split(tmpdir):
+def test_replace_column_description_split(tmpdir, manifest_path_str):
     schema_yml1 = """
 version: 2
 
@@ -302,7 +307,14 @@ models:
     yml_file1.write(schema_yml1)
     yml_file2.write(schema_yml2)
     yml_file3.write(schema_yml3)
-    input_args = [str(yml_file1), str(yml_file2), str(yml_file3)]
+    input_args = [
+        str(yml_file1),
+        str(yml_file2),
+        str(yml_file3),
+        "--is_test",
+        "--manifest",
+        manifest_path_str,
+    ]
     status_code = main(input_args)
     assert status_code == 1
     result1 = yml_file1.read_text("utf-8")

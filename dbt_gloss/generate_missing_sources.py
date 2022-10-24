@@ -1,22 +1,27 @@
 import argparse
+import os
+import time
+import yaml
+
 from pathlib import Path
 from typing import Dict
 from typing import FrozenSet
 from typing import Optional
 from typing import Sequence
 
-import yaml
-
 from dbt_gloss.check_script_ref_and_source import check_refs_sources
 from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_manifest_args
+from dbt_gloss.utils import add_tracking_args
 from dbt_gloss.utils import get_json
 from dbt_gloss.utils import JsonOpenError
+
+from dbt_gloss.tracking import dbtGlossTracking
 
 
 def create_missing_sources(
     sources: Dict[FrozenSet[str], Dict[str, str]], output_path: str
-) -> int:
+) -> Dict:
     status_code = 0
     if sources:
         status_code = 1
@@ -48,15 +53,16 @@ def create_missing_sources(
                     f"Path `{output_path}` does not exists. "
                     f"Please create this file or change path."
                 )
-                return status_code
+                return {"status_code": status_code}
 
-    return status_code
+    return {"status_code": status_code}
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
     add_filenames_args(parser)
     add_manifest_args(parser)
+    add_tracking_args(parser)
 
     parser.add_argument(
         "--schema-file",
@@ -75,11 +81,28 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         print(f"Unable to load manifest file ({e})")
         return 1
 
+    start_time = time.time()
     _, _, sources = check_refs_sources(paths=args.filenames, manifest=manifest)
 
-    status_code = create_missing_sources(sources, output_path=args.schema_file)
+    hook_properties = create_missing_sources(sources, output_path=args.schema_file)
+    end_time = time.time()
 
-    return status_code
+    script_args = vars(args)
+
+    tracker = dbtGlossTracking()
+    tracker.track_hook_event(
+        event_name="Hook Executed",
+        manifest=manifest,
+        event_properties={
+            "hook_name": os.path.basename(__file__),
+            "description": "If any source is missing this hook tries to create it.",
+            "status": hook_properties.get("status_code"),
+            "execution_time": end_time - start_time,
+            "is_pytest": script_args.get("is_test"),
+        },
+        script_args=script_args,
+    )
+    return hook_properties.get("status_code")
 
 
 if __name__ == "__main__":

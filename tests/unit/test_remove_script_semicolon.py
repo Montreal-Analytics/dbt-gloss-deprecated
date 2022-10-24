@@ -40,11 +40,13 @@ def test_fix_semicolon_default():
 
 
 @pytest.mark.parametrize(("input_s", "expected_status_code", "output"), TESTS)
-def test_fix_semicolon_integration(input_s, expected_status_code, output, tmpdir):
+def test_fix_semicolon_integration(
+    input_s, expected_status_code, output, tmpdir, manifest_path_str
+):
     path = tmpdir.join("file.txt")
     path.write_binary(input_s)
 
-    status_code = main([str(path)])
+    status_code = main([str(path), "--is_test", "--manifest", manifest_path_str])
     file_output = path.read_binary()
 
     assert file_output == output

@@ -86,7 +86,7 @@ def test_generate_model_properties_file_existing_schema(
 ):
     properties_file = tmpdir.join("/schema.yml")
     properties_file.write(schema)
-    input_args.extend(["--properties-file", str(properties_file)])
+    input_args.extend(["--properties-file", str(properties_file), "--is_test"])
     if valid_manifest:
         input_args.extend(["--manifest", manifest_path_str])
     if valid_catalog:
@@ -112,7 +112,7 @@ models:
 - name: aa
 """
     )
-    input_args = ["aa/bb/with_schema.sql"]
+    input_args = ["aa/bb/with_schema.sql", "--is_test"]
     input_args.extend(["--properties-file", str(properties_file)])
     input_args.extend(["--manifest", manifest_path_str])
     input_args.extend(["--catalog", catalog_path_str])
@@ -126,7 +126,7 @@ def test_generate_model_properties_file_path_template(
     directory_tmp = "{database}/{schema}/{alias}/{name}.yml"
     directory = "test/test/test/catalog_cols.yml"
     properties_file = tmpdir.join(directory_tmp)
-    input_args = ["aa/bb/catalog_cols.sql"]
+    input_args = ["aa/bb/catalog_cols.sql", "--is_test"]
     input_args.extend(["--properties-file", str(properties_file)])
     input_args.extend(["--manifest", manifest_path_str])
     input_args.extend(["--catalog", catalog_path_str])

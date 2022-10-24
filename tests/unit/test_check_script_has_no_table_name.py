@@ -282,12 +282,12 @@ def test_has_table_name(input_s, args, expected_status_code, output):
 
 @pytest.mark.parametrize(("input_s", "args", "expected_status_code", "output"), TESTS)
 def test_has_table_name_integration(
-    input_s, args, expected_status_code, output, tmpdir
+    input_s, args, expected_status_code, output, tmpdir, manifest_path_str
 ):
     path = tmpdir.join("file.txt")
     path.write_text(input_s, "utf-8")
 
-    ret = main([str(path), *args])
+    ret = main([str(path), "--is_test", "--manifest", manifest_path_str, *args])
 
     assert ret == expected_status_code
 

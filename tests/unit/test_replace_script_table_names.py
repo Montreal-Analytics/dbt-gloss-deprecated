@@ -129,7 +129,7 @@ def test_replace_script_table_names(
 ):
     path = tmpdir.join("file.txt")
     path.write_text(input_s, "utf-8")
-    input_args = [str(path)]
+    input_args = [str(path), "--is_test"]
 
     if valid_manifest:
         input_args.extend(["--manifest", manifest_path_str])

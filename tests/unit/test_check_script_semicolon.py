@@ -22,10 +22,12 @@ TESTS = (
 
 
 @pytest.mark.parametrize(("input_s", "expected_status_code"), TESTS)
-def test_check_semicolon_integration(input_s, expected_status_code, tmpdir):
+def test_check_semicolon_integration(
+    input_s, expected_status_code, tmpdir, manifest_path_str
+):
     path = tmpdir.join("file.txt")
     path.write_binary(input_s)
 
-    status_code = main([str(path)])
+    status_code = main([str(path), "--manifest", manifest_path_str, "--is_test"])
 
     assert status_code == expected_status_code

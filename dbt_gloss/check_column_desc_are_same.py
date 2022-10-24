@@ -1,18 +1,27 @@
 import argparse
+import os
+import time
+
 from collections import Counter
 from dataclasses import dataclass
 from itertools import groupby
 from pathlib import Path
-from typing import Generator
+from typing import Dict, Generator
 from typing import Iterator
 from typing import Optional
 from typing import Sequence
 from typing import Tuple
 
 from dbt_gloss.utils import add_filenames_args
+from dbt_gloss.utils import add_manifest_args
+from dbt_gloss.utils import add_tracking_args
 from dbt_gloss.utils import get_filenames
+from dbt_gloss.utils import get_json
 from dbt_gloss.utils import get_model_schemas
+from dbt_gloss.utils import JsonOpenError
 from dbt_gloss.utils import ModelSchema
+
+from dbt_gloss.tracking import dbtGlossTracking
 
 
 @dataclass
@@ -50,7 +59,7 @@ def get_grouped(
     return grouped
 
 
-def check_column_desc(paths: Sequence[str], ignore: Optional[Sequence[str]]) -> int:
+def check_column_desc(paths: Sequence[str], ignore: Optional[Sequence[str]]) -> Dict:
     status_code = 0
     grouped = get_grouped(paths, ignore)
 
@@ -61,12 +70,14 @@ def check_column_desc(paths: Sequence[str], ignore: Optional[Sequence[str]]) -> 
             print(f"{name}: has different descriptions:")
             for desc, cnt in group_cnt.items():
                 print("  - (%s): %s" % (cnt, desc))
-    return status_code
+    return {"status_code": status_code}
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
     add_filenames_args(parser)
+    add_manifest_args(parser)
+    add_tracking_args(parser)
 
     group = parser.add_mutually_exclusive_group()
     group.add_argument(
@@ -77,7 +88,33 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     args = parser.parse_args(argv)
 
-    return check_column_desc(paths=args.filenames, ignore=args.ignore)
+    try:
+        manifest = get_json(args.manifest)
+    except JsonOpenError as e:
+        print(f"Unable to load manifest file ({e})")
+        return 1
+
+    start_time = time.time()
+    hook_properties = check_column_desc(paths=args.filenames, ignore=args.ignore)
+    end_time = time.time()
+
+    script_args = vars(args)
+
+    tracker = dbtGlossTracking()
+    tracker.track_hook_event(
+        event_name="Hook Executed",
+        manifest=manifest,
+        event_properties={
+            "hook_name": os.path.basename(__file__),
+            "description": "Check column descriptions are the same.",
+            "status": hook_properties.get("status_code"),
+            "execution_time": end_time - start_time,
+            "is_pytest": script_args.get("is_test"),
+        },
+        script_args=script_args,
+    )
+
+    return hook_properties.get("status_code")
 
 
 if __name__ == "__main__":
