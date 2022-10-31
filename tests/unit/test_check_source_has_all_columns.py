@@ -3,7 +3,6 @@ import pytest
 from dbt_gloss.check_source_has_all_columns import get_catalog_nodes
 from dbt_gloss.check_source_has_all_columns import main
 
-
 # Input schema, valid_catalog, expected return value
 TESTS = (
     (

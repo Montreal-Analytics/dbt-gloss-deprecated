@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_macro_has_description import main
 
-
 # Input args, valid manifest, expected return value
 TESTS = (
     (["macros/aa/with_description.sql"], True, 0),
