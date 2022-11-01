@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_source_has_tests import main
 
-
 # Input schema, valid_manifest, expected return value
 TESTS = (  # type: ignore
     (

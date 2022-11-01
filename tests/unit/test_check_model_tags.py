@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_model_tags import main
 
-
 TESTS = (
     (["aa/bb/with_tags.sql", "--tags", "foo", "bar"], True, 0),
     (["aa/bb/with_tags_foo.sql", "--tags", "foo", "bar"], True, 0),

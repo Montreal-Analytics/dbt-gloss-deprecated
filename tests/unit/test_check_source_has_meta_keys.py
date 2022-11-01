@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_source_has_meta_keys import main
 
-
 # Input schema, expected return value
 TESTS = (
     (

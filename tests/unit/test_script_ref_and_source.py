@@ -4,7 +4,6 @@ from dbt_gloss.check_script_ref_and_source import check_refs_sources
 from dbt_gloss.check_script_ref_and_source import main
 from dbt_gloss.utils import get_json
 
-
 # Input, expected return value, expected output
 TESTS = (  # type: ignore
     (
