@@ -1,13 +1,16 @@
 import argparse
 import os
 import time
-import yaml
 
 from pathlib import Path
+from typing import Any
 from typing import Dict
 from typing import FrozenSet
 from typing import Optional
 from typing import Sequence
+
+from yaml import dump
+from yaml import safe_load
 
 from dbt_gloss.check_script_ref_and_source import check_refs_sources
 from dbt_gloss.utils import add_filenames_args
@@ -21,7 +24,7 @@ from dbt_gloss.tracking import dbtGlossTracking
 
 def create_missing_sources(
     sources: Dict[FrozenSet[str], Dict[str, str]], output_path: str
-) -> Dict:
+) -> Dict[str, Any]:
     status_code = 0
     if sources:
         status_code = 1
@@ -31,7 +34,7 @@ def create_missing_sources(
             path = Path(output_path)
             # is file and exists
             if path.is_file():
-                schema = yaml.safe_load(path.open())
+                schema = safe_load(path.open())
                 schema_sources = schema.get("sources", [])
                 seen = False  # pragma: no mutate
                 for schema_source in schema_sources:
@@ -47,7 +50,7 @@ def create_missing_sources(
                     )
                 with open(path, "w") as f:
                     print(f"Generating missing source `{source_name}.{table_name}`.")
-                    yaml.dump(schema, f, default_flow_style=False, sort_keys=False)
+                    dump(schema, f, default_flow_style=False, sort_keys=False)
             else:
                 print(
                     f"Path `{output_path}` does not exists. "

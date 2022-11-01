@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_source_columns_have_desc import main
 
-
 # Input schema, expected return value
 TESTS = (
     (

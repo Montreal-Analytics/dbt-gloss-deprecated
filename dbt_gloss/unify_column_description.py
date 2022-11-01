@@ -5,8 +5,8 @@ import yaml
 
 from collections import Counter
 from pathlib import Path
+from typing import Any
 from typing import Dict
-from typing import NoReturn
 from typing import Optional
 from typing import Sequence
 
@@ -20,7 +20,7 @@ from dbt_gloss.check_column_desc_are_same import get_grouped
 from dbt_gloss.tracking import dbtGlossTracking
 
 
-def _replace_desc(path: Path, column_name: str, description: str) -> NoReturn:
+def _replace_desc(path: Path, column_name: str, description: str) -> None:
     file = yaml.safe_load(path.open())
     for model in file.get("models", []):
         for column in model.get("columns", []):
@@ -34,7 +34,9 @@ def _replace_desc(path: Path, column_name: str, description: str) -> NoReturn:
         )
 
 
-def replace_column_desc(paths: Sequence[str], ignore: Optional[Sequence[str]]) -> Dict:
+def replace_column_desc(
+    paths: Sequence[str], ignore: Optional[Sequence[str]]
+) -> Dict[str, Any]:
     status_code = 0
     grouped = get_grouped(paths, ignore)
 

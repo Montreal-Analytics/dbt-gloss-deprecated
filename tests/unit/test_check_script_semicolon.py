@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_script_semicolon import main
 
-
 # Input, expected return value
 TESTS = (
     (b"foo\n", 0),

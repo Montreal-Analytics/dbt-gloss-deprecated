@@ -5,11 +5,11 @@ import time
 from pathlib import Path
 from typing import Any
 from typing import Dict
-from typing import NoReturn
 from typing import Optional
 from typing import Sequence
 
-import yaml
+from yaml import dump
+from yaml import safe_load
 
 from dbt_gloss.utils import add_catalog_args
 from dbt_gloss.utils import add_filenames_args
@@ -24,8 +24,8 @@ from dbt_gloss.utils import Model
 from dbt_gloss.tracking import dbtGlossTracking
 
 
-def append_to_properties_file(path: Path, model_schema: Dict[str, Any]) -> NoReturn:
-    file = yaml.safe_load(path.open())
+def append_to_properties_file(path: Path, model_schema: Dict[str, Any]) -> None:
+    file = safe_load(path.open())
     if file.get("models"):
         model = file.get("models")
     else:
@@ -34,18 +34,18 @@ def append_to_properties_file(path: Path, model_schema: Dict[str, Any]) -> NoRet
     model.append(model_schema)
     model_name = model_schema.get("name")  # pragma: no mutate
     with open(path, "w") as f:
-        yaml.dump(file, f, default_flow_style=False, sort_keys=False)
+        dump(file, f, default_flow_style=False, sort_keys=False)
         print(
             f"{path}: the schema of the `{model_name}` model was appended to the file."
         )
 
 
-def write_to_properties_file(path: Path, model_schema: Dict[str, Any]) -> NoReturn:
+def write_to_properties_file(path: Path, model_schema: Dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     file = {"version": 2, "models": [model_schema]}
     model_name = model_schema.get("name")  # pragma: no mutate
     with open(path, "w") as f:
-        yaml.dump(file, f, default_flow_style=False, sort_keys=False)
+        dump(file, f, default_flow_style=False, sort_keys=False)
         print(
             f"{path}: the schema of the `{model_name}` model was written to the file."
         )
@@ -53,7 +53,7 @@ def write_to_properties_file(path: Path, model_schema: Dict[str, Any]) -> NoRetu
 
 def write_model_properties(
     path: str, model: Dict[str, Any], path_template: Dict[str, str]
-) -> NoReturn:
+) -> None:
     path_form = path.format(**path_template)
     model_path = Path(path_form)
     # It is a file and it exists
