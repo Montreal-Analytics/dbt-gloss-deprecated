@@ -88,7 +88,7 @@ E.g. in two of your models, you have `customer_id` with the description `This is
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed since it also validates properties files | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -130,7 +130,7 @@ You want to make sure your columns follow a contract, e.g. all your boolean colu
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :white_check_mark: Yes |
+| :white_check_mark: Yes | :white_check_mark: Yes |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -169,7 +169,7 @@ You want to make sure that all specified columns in the properties files (usuall
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed since it also validates properties files | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -256,7 +256,7 @@ You want to make sure that all models have a description.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed since it also validates properties files | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -304,7 +304,7 @@ If every model needs to have certain meta keys.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed since it also validates properties files | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -348,7 +348,7 @@ You want to make sure that every model has a properties file.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -394,7 +394,7 @@ You want to make sure that every model has certain tests.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -436,7 +436,7 @@ You want to make sure that every model has certain tests.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -479,7 +479,7 @@ You want to make sure that every model has one (or more) of a group of eligible 
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -521,7 +521,7 @@ You want to make sure that every model was tested.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -565,7 +565,7 @@ You want to make sure your model names follow a naming convention (e.g., staging
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :white_check_mark: Yes |
+| :white_check_mark: Yes | :white_check_mark: Yes |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -609,7 +609,7 @@ You want to find orphaned models (empty file, hard-coded reference, etc.). Or yo
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -652,7 +652,7 @@ You want to be sure that certain models are using only models from specified dat
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -695,7 +695,7 @@ You want to be sure that certain models are using only models from specified sch
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -737,7 +737,7 @@ Make sure you did not typo in tags.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -809,7 +809,7 @@ Make sure you did not provide a semicolon at the end of the file.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -845,7 +845,7 @@ To make sure that you have only refs and sources in your `SQL` files.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -876,7 +876,7 @@ You want to make sure that all specified columns in the properties files (usuall
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -914,7 +914,7 @@ You want to make sure that you have all the database columns listed in the prope
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: No | :white_check_mark: Yes |
+| :white_check_mark: Yes | :white_check_mark: Yes |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -951,7 +951,7 @@ You want to make sure that all sources have a description.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -986,7 +986,7 @@ You want to make sure that all freshness is correctly set.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1018,7 +1018,7 @@ You want to make sure that the source has loader specified.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1057,7 +1057,7 @@ If every source needs to have certain meta keys.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed since it also validates properties files | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1096,7 +1096,7 @@ You want to make sure that every source has certain tests.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Yes | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1136,7 +1136,7 @@ You want to make sure that every source has certain tests.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Yes | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1176,7 +1176,7 @@ You want to make sure that every source was tested.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Yes | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1216,7 +1216,7 @@ Make sure you did not typo in tags.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1258,7 +1258,7 @@ You want to find orphaned sources without any dependencies. Or you want to make 
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :white_check_mark: Yes| :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1386,7 +1386,7 @@ You are too lazy to define schemas manually :D.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed since this hook tries to generate even non-existent source | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1442,7 +1442,7 @@ You want the descriptions of the same columns to be the same. E.g. in two of you
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed since this hook is using only yaml files | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1527,7 +1527,7 @@ repos:
 
 #### When to use it
 
-You are running and debugging your `SQL` in the editor. This editor does not know `source` or `ref` macros. So every time you copy the script from the editor into `dbt` project you need to rewrite all table names to `source` or `ref`. That's boring and error-prone. If you run this hook it will replace all table names with macros instead of you.
+It is best practice to have a property file for each model created in your dbt project. Use this hook to auto generate a property file for your model.
 
 #### Requirements
 
@@ -1573,7 +1573,7 @@ You are too lazy or forgetful to delete one character at the end of the script.
 
 | Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
 | :----: | :----------: |
-| :x: Not needed | :x: Not needed |
+| :white_check_mark: Yes | :x: Not needed |
 
 <sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
 <sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
@@ -1738,3 +1738,25 @@ repos:
 :warning: do not forget to include `--` as the last argument. Otherwise `pre-commit` would not be able to separate a list of files with args.
 
 -----
+
+## Tracking
+
+We want to build the best version of `dbt-gloss` possible, and a crucial part of that is understanding how users work with this package.
+That said, we added some simple event tracking to `dbt-gloss` using Mixpanel. We do not track any sensitive information like model names 
+or model contents. The only information we track at the moment is what hook is triggered, when is it triggered and how long the execution took.</br>
+
+You can find the tracking details in each hook file as well as in the [`tracking.py`](dbt_gloss/tracking.py) folder.</br>
+
+By default, tracking is turned on. If you wish to opt out of the event tracking, you can add the `--disable_tracking` argument to each of your hooks.
+
+#### Example
+```
+repos:
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
+ rev: v1.0.0
+ hooks:
+ - id: check-model-columns-have-desc
+   args: ["--disable_tracking"]
+ - id: check-source-table-has-description
+   args: ["--disable_tracking"]
+```
