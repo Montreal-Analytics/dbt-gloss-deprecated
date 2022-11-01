@@ -5,7 +5,6 @@ from dbt_gloss.check_script_has_no_table_name import main
 from dbt_gloss.check_script_has_no_table_name import prev_cur_next_iter
 from dbt_gloss.check_script_has_no_table_name import replace_comments
 
-
 # Input, args, expected return value, expected output
 TESTS = (  # type: ignore
     (

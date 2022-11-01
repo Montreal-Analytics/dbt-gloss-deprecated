@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_column_name_contract import main
 
-
 # Input args, valid manifest, expected return value
 TESTS = (
     (["aa/bb/with_boolean_column_with_prefix.sql"], "is_.*", "boolean", True, 0),
