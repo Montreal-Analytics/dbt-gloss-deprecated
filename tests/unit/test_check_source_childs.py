@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_source_childs import main
 
-
 # Input schema, input_args, valid_manifest, expected return value
 # Input args, valid manifest, expected return value
 TESTS = (  # type: ignore

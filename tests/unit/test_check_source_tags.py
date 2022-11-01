@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_source_tags import main
 
-
 # Input schema, expected return value
 TESTS = (
     (

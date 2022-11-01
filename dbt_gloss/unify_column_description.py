@@ -1,7 +1,6 @@
 import argparse
 from collections import Counter
 from pathlib import Path
-from typing import NoReturn
 from typing import Optional
 from typing import Sequence
 
@@ -11,7 +10,7 @@ from dbt_gloss.check_column_desc_are_same import get_grouped
 from dbt_gloss.utils import add_filenames_args
 
 
-def _replace_desc(path: Path, column_name: str, description: str) -> NoReturn:
+def _replace_desc(path: Path, column_name: str, description: str) -> None:
     file = yaml.safe_load(path.open())
     for model in file.get("models", []):
         for column in model.get("columns", []):

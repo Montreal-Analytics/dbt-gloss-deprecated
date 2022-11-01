@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_source_table_has_description import main
 
-
 # Input schema, expected return value
 TESTS = (
     (
