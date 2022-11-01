@@ -5,11 +5,8 @@ import time
 
 from typing import Any
 from typing import Dict
-from typing import FrozenSet
 from typing import Optional
 from typing import Sequence
-from typing import Set
-from typing import Tuple
 
 from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_manifest_args
@@ -21,7 +18,9 @@ from dbt_gloss.utils import JsonOpenError
 from dbt_gloss.tracking import dbtGlossTracking
 
 
-def check_refs_sources(paths: Sequence[str], manifest: Dict[str, Any]) -> Dict:
+def check_refs_sources(
+    paths: Sequence[str], manifest: Dict[str, Any]
+) -> Dict[str, Any]:
     status_code = 0
     sqls = get_filenames(paths, [".sql"])
 

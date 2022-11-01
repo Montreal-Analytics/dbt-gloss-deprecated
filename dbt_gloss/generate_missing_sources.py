@@ -24,7 +24,7 @@ from dbt_gloss.tracking import dbtGlossTracking
 
 def create_missing_sources(
     sources: Dict[FrozenSet[str], Dict[str, str]], output_path: str
-) -> Dict[str, Any]:
+) -> Dict:
     status_code = 0
     if sources:
         status_code = 1
@@ -85,7 +85,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
 
     start_time = time.time()
-    _, _, sources = check_refs_sources(paths=args.filenames, manifest=manifest)
+    check_refs_sources_properties = check_refs_sources(
+        paths=args.filenames, manifest=manifest
+    )
+
+    sources = check_refs_sources_properties.get("sources")
 
     hook_properties = create_missing_sources(sources, output_path=args.schema_file)
     end_time = time.time()

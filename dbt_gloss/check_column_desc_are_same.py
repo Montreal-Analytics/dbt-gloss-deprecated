@@ -6,7 +6,9 @@ from collections import Counter
 from dataclasses import dataclass
 from itertools import groupby
 from pathlib import Path
-from typing import Dict, Generator
+from typing import Any
+from typing import Dict
+from typing import Generator
 from typing import Iterator
 from typing import Optional
 from typing import Sequence
@@ -59,7 +61,9 @@ def get_grouped(
     return grouped
 
 
-def check_column_desc(paths: Sequence[str], ignore: Optional[Sequence[str]]) -> Dict:
+def check_column_desc(
+    paths: Sequence[str], ignore: Optional[Sequence[str]]
+) -> Dict[str, Any]:
     status_code = 0
     grouped = get_grouped(paths, ignore)
 

@@ -88,7 +88,7 @@ def generate_properties_file(
     manifest: Dict[str, Any],
     catalog: Dict[str, Any],
     properties_file: str,
-) -> int:
+) -> Dict[str, Any]:
     status_code = 0
     sqls = get_filenames(paths, [".sql"])
     filenames = set(sqls.keys())

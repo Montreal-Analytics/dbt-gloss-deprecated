@@ -22,7 +22,7 @@ from dbt_gloss.tracking import dbtGlossTracking
 
 def check_column_name_contract(
     paths: Sequence[str], pattern: str, dtype: str, catalog: Dict[str, Any]
-) -> Dict:
+) -> Dict[str, Any]:
     status_code = 0
     sqls = get_filenames(paths, [".sql"])
     filenames = set(sqls.keys())
