@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_model_has_all_columns import main
 
-
 # Input args, valid manifest, expected return value
 TESTS = (
     (["aa/bb/catalog_cols.sql"], True, True, 0),

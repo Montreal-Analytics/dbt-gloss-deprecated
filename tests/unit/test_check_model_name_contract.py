@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_model_name_contract import main
 
-
 # Input args, valid manifest, expected return value
 TESTS = (
     (["aa/bb/catalog_cols.sql"], "catalog_.*", True, 0),

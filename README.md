@@ -1,5 +1,4 @@
 <p align="center">
- <img src=".github/dbt-gloss.png" alt="dbt-pre-commit" width=600/>
  <h1 align="center">dbt-gloss</h1>
 </p>
 <p align="center">
@@ -204,3 +203,8 @@ jobs:
     with:
       args: run --files ${{ steps.file_changes.outputs.files}}
 ```
+
+### Credits
+This software is a fork of [pre-commit-dbt](https://github.com/offbi/pre-commit-dbt/).
+We created this fork since the last release of pre-commit-dbt is dated April 2021 and had many unresolved issues with more recent versions of dbt. As of September 2022, dbt-gloss is supported, but not warrantied by Montreal Analytics. Issues and feature requests can be reported via https://github.com/Montreal-Analytics/dbt-gloss/issues, which will be regularly monitored and prioritized by Montreal Analytics, a preferred dbt consulting partner.
+Major thanks to Radek Tomsej who originally created this tool.

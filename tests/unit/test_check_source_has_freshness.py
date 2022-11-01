@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_source_has_freshness import main
 
-
 # Input schema, expected return value
 TESTS = (
     (
