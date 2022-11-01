@@ -24,7 +24,7 @@ from dbt_gloss.tracking import dbtGlossTracking
 
 def check_test_cnt(
     paths: Sequence[str], manifest: Dict[str, Any], required_tests: Dict[str, int]
-) -> int:
+) -> Dict[str, Any]:
     status_code = 0
     ymls = [Path(path) for path in paths]
 
@@ -53,7 +53,7 @@ def check_test_cnt(
                     f"has only {test_cnt} {required_test} tests, but "
                     f"{required_cnt} are required.",
                 )
-    return {'status_code': status_code}
+    return {"status_code": status_code}
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -105,19 +105,19 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     tracker = dbtGlossTracking()
     tracker.track_hook_event(
-        event_name='Hook Executed',
+        event_name="Hook Executed",
         manifest=manifest,
         event_properties={
-            'hook_name': os.path.basename(__file__),
-            'description': 'Check the source has a number of tests by test type.',
-            'status': hook_properties.get('status_code'),
-            'execution_time': end_time - start_time,
-            'is_pytest': script_args.get('is_test')
+            "hook_name": os.path.basename(__file__),
+            "description": "Check the source has a number of tests by test type.",
+            "status": hook_properties.get("status_code"),
+            "execution_time": end_time - start_time,
+            "is_pytest": script_args.get("is_test"),
         },
         script_args=script_args,
     )
 
-    return hook_properties.get('status_code')
+    return hook_properties.get("status_code")
 
 
 if __name__ == "__main__":
