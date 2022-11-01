@@ -11,9 +11,9 @@ class dbtGlossTracking:
     def track_hook_event(
         self,
         event_name: str,
-        event_properties: Dict[Any],
+        event_properties: Dict[str, Any],
         manifest: Dict[str, Any],
-        script_args: Dict[Any],
+        script_args: Dict[str, Any],
     ) -> None:
         disable_tracking = script_args.get("disable_tracking", False)
         if not disable_tracking:
@@ -32,7 +32,7 @@ class dbtGlossTracking:
                 print(f"Mixpanel Error: {error}")
 
     def _property_transformations(
-        self, dbt_metadata: Dict[Any], event_properties: Dict[Any]
+        self, dbt_metadata: Dict[str, Any], event_properties: Dict[str, Any]
     ) -> Dict[str, Any]:
         event_properties.update(dbt_metadata)
         transformation_func = [self._status_code_to_text, self._remove_ext_in_hook_name]
@@ -43,7 +43,7 @@ class dbtGlossTracking:
         return event_properties
 
     @staticmethod
-    def _status_code_to_text(event_properties: Dict[Any]) -> Dict[Any]:
+    def _status_code_to_text(event_properties: Dict[str, Any]) -> Dict[str, Any]:
         transformed_properties = event_properties
         if event_properties.get("status") == 0:
             transformed_properties["status"] = "Success"
@@ -53,7 +53,7 @@ class dbtGlossTracking:
         return transformed_properties
 
     @staticmethod
-    def _remove_ext_in_hook_name(event_properties: Dict[Any]) -> Dict[Any]:
+    def _remove_ext_in_hook_name(event_properties: Dict[str, Any]) -> Dict[str, Any]:
         transformed_properties = event_properties
         transformed_properties["hook_name"] = os.path.splitext(
             transformed_properties.get("hook_name")
