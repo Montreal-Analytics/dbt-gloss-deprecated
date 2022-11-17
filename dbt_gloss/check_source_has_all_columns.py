@@ -134,7 +134,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         manifest=manifest,
         event_properties={
             "hook_name": os.path.basename(__file__),
-            "description": "Check the source has all columns in the properties file.",
+            "description": args.filenames,
             "status": hook_properties.get("status_code"),
             "execution_time": end_time - start_time,
             "is_pytest": script_args.get("is_test"),
