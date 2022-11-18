@@ -7,8 +7,8 @@ from typing import Dict
 from typing import Optional
 from typing import Sequence
 
-from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_config_args
+from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_manifest_args
 from dbt_gloss.utils import add_tracking_args
 from dbt_gloss.utils import get_filenames

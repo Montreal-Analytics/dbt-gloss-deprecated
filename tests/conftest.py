@@ -1,6 +1,6 @@
 import json
-
 import pytest
+import yaml
 
 from dbt_gloss.utils import cmd_output
 
@@ -277,6 +277,18 @@ CATALOG = {
         },
     },
 }
+
+CONFIG_FILE = {
+    "disable-tracking": True
+}
+
+
+@pytest.fixture(scope="function")
+def config_path_str(tmpdir):
+    yaml_config = yaml.dump(CONFIG_FILE)
+    file = tmpdir.mkdir("temp").join(".dbt-gloss.yaml")
+    file.write(yaml_config)
+    yield str(file)
 
 
 @pytest.fixture(scope="function")
