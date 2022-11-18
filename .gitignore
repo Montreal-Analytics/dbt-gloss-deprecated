@@ -141,3 +141,6 @@ manifest.json
 # Mutmut
 html
 .mutmut-cache
+
+# OS
+.DS_Store
