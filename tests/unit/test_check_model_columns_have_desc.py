@@ -3,7 +3,6 @@ import pytest
 from dbt_gloss.check_model_columns_have_desc import check_column_desc
 from dbt_gloss.check_model_columns_have_desc import main
 
-
 # Input args, valid manifest, expected return value
 TESTS = (
     (["aa/bb/with_column_description.sql",'--is_test'], True, 0),

@@ -7,14 +7,13 @@ from typing import Any
 from typing import Dict
 from typing import Generator
 from typing import List
-from typing import NoReturn
 from typing import Optional
 from typing import Sequence
 from typing import Set
 from typing import Text
 from typing import Union
 
-import yaml
+from yaml import safe_load
 
 
 class CalledProcessError(RuntimeError):
@@ -171,7 +170,7 @@ def get_model_schemas(
     yml_files: Sequence[Path], filenames: Set[str], all_schemas: bool = False
 ) -> Generator[ModelSchema, None, None]:
     for yml_file in yml_files:
-        schema = yaml.safe_load(yml_file.open())
+        schema = safe_load(yml_file.open())
         for model in schema.get("models", []):
             if isinstance(model, dict) and model.get("name"):
                 model_name = model.get("name", "")  # pragma: no mutate
@@ -188,7 +187,7 @@ def get_macro_schemas(
     yml_files: Sequence[Path], filenames: Set[str], all_schemas: bool = False
 ) -> Generator[MacroSchema, None, None]:
     for yml_file in yml_files:
-        schema = yaml.safe_load(yml_file.open())
+        schema = safe_load(yml_file.open())
         for macro in schema.get("macros", []):
             if isinstance(macro, dict) and macro.get("name"):
                 macro_name = macro.get("name", "")  # pragma: no mutate
@@ -205,7 +204,7 @@ def get_source_schemas(
     yml_files: Sequence[Path],
 ) -> Generator[SourceSchema, None, None]:
     for yml_file in yml_files:
-        schema = yaml.safe_load(yml_file.open())
+        schema = safe_load(yml_file.open())
         for source in schema.get("sources", []):
             source_name = source.get("name")
             tables = source.pop("tables", [])
@@ -304,7 +303,7 @@ def run_dbt_cmd(cmd: Sequence[Any]) -> int:
     return status_code
 
 
-def add_filenames_args(parser: argparse.ArgumentParser) -> NoReturn:
+def add_filenames_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "filenames",
         nargs="*",
@@ -312,7 +311,7 @@ def add_filenames_args(parser: argparse.ArgumentParser) -> NoReturn:
     )
 
 
-def add_manifest_args(parser: argparse.ArgumentParser) -> NoReturn:
+def add_manifest_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--manifest",
         type=str,
@@ -340,7 +339,7 @@ def add_tracking_args(
     )
 
 
-def add_catalog_args(parser: argparse.ArgumentParser) -> NoReturn:
+def add_catalog_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--catalog",
         type=str,
@@ -353,7 +352,7 @@ def add_catalog_args(parser: argparse.ArgumentParser) -> NoReturn:
     )
 
 
-def add_dbt_cmd_args(parser: argparse.ArgumentParser) -> NoReturn:
+def add_dbt_cmd_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--global-flags",
         nargs="*",
@@ -367,7 +366,7 @@ def add_dbt_cmd_args(parser: argparse.ArgumentParser) -> NoReturn:
     )
 
 
-def add_dbt_cmd_model_args(parser: argparse.ArgumentParser) -> NoReturn:
+def add_dbt_cmd_model_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--model-prefix",
         type=str,
@@ -398,7 +397,7 @@ class ParseDict(argparse.Action):  # pragma: no cover
         namespace: argparse.Namespace,
         values: Union[Text, Sequence[Any], None],
         option_string: Optional[str] = None,
-    ) -> NoReturn:
+    ) -> None:
         """Perform the parsing"""
         result = {}
 

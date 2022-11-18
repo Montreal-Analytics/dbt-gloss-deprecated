@@ -3,7 +3,6 @@ import pytest
 from dbt_gloss.check_macro_arguments_have_desc import check_argument_desc
 from dbt_gloss.check_macro_arguments_have_desc import main
 
-
 # Input args, valid manifest, expected return value
 TESTS = (
     (["macros/aa/with_argument_description.sql"], True, 0),

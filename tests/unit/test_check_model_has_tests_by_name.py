@@ -2,7 +2,6 @@ import pytest
 
 from dbt_gloss.check_model_has_tests_by_name import main
 
-
 # Input schema, input_args, valid_manifest, expected return value
 # Input args, valid manifest, expected return value
 TESTS = (

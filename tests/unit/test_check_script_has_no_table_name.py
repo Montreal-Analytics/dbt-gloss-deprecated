@@ -5,7 +5,6 @@ from dbt_gloss.check_script_has_no_table_name import main
 from dbt_gloss.check_script_has_no_table_name import prev_cur_next_iter
 from dbt_gloss.check_script_has_no_table_name import replace_comments
 
-
 # Input, args, expected return value, expected output
 TESTS = (  # type: ignore
     (
@@ -267,6 +266,30 @@ select * from unioned
         ["--ignore-dotless-table"],
         1,
         {"aa.bb"},
+    ),
+    (
+        """
+    with source as (
+        select * from {{source('aa', 'bb')}}
+    )
+    SELECT * FROM source
+    """,
+        [],
+        0,
+        {},
+    ),
+    (
+        """
+    {% macro source_cte(source_name, tuple_list) -%}
+    WITH{% for cte_ref in tuple_list %} {{cte_ref[0]}} AS (
+        SELECT * FROM {{ source(source_name, cte_ref[1]) }}
+    ),
+        {%- endfor %} final as (
+    {%- endmacro %}
+    """,
+        [],
+        0,
+        {},
     ),
 )
 
