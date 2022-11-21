@@ -14,7 +14,7 @@ sources:
     """,
         True,
         True,
-        ["--test-cnt", "1", '--is_test'],
+        ["--test-cnt", "1", "--is_test"],
         0,
     ),
     (
@@ -27,7 +27,7 @@ sources:
     """,
         True,
         True,
-        ['--is_test'],
+        ["--is_test"],
         0,
     ),
     (
@@ -40,7 +40,7 @@ sources:
     """,
         False,
         True,
-        ["--test-cnt", "1", '--is_test'],
+        ["--test-cnt", "1", "--is_test"],
         1,
     ),
     (
@@ -53,7 +53,7 @@ sources:
     """,
         True,
         True,
-        ["--test-cnt", "1", '--is_test'],
+        ["--test-cnt", "1", "--is_test"],
         1,
     ),
     (
@@ -66,7 +66,7 @@ sources:
     """,
         True,
         True,
-        ["--test-cnt", "1", '--is_test'],
+        ["--test-cnt", "1", "--is_test"],
         0,
     ),
     (
@@ -79,14 +79,21 @@ sources:
     """,
         True,
         False,
-        ["--test-cnt", "1", '--is_test'],
+        ["--test-cnt", "1", "--is_test"],
         0,
     ),
 )
 
 
 @pytest.mark.parametrize(
-    ("input_schema", "valid_manifest", "valid_config", "input_args", "expected_status_code"), TESTS
+    (
+        "input_schema",
+        "valid_manifest",
+        "valid_config",
+        "input_args",
+        "expected_status_code",
+    ),
+    TESTS,
 )
 def test_check_source_has_tests(
     input_schema,

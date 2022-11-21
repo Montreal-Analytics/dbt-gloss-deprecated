@@ -12,7 +12,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", "data=1", '--is_test'],
+        ["--tests", "unique=1", "data=1", "--is_test"],
         True,
         True,
         0,
@@ -25,7 +25,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", "data=1", '--is_test'],
+        ["--tests", "unique=1", "data=1", "--is_test"],
         False,
         True,
         1,
@@ -38,7 +38,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", '--is_test'],
+        ["--tests", "unique=1", "--is_test"],
         True,
         True,
         0,
@@ -51,7 +51,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "data=1", '--is_test'],
+        ["--tests", "data=1", "--is_test"],
         True,
         True,
         0,
@@ -64,7 +64,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=2", '--is_test'],
+        ["--tests", "unique=2", "--is_test"],
         True,
         True,
         1,
@@ -77,7 +77,7 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", "data=1", '--is_test'],
+        ["--tests", "unique=1", "data=1", "--is_test"],
         True,
         False,
         0,
@@ -93,14 +93,21 @@ sources:
     -   name: test1
         description: test description
     """,
-        ["--tests", "unique=1", "data=foo", '--is_test'],
+        ["--tests", "unique=1", "data=foo", "--is_test"],
         True,
     ),
 )
 
 
 @pytest.mark.parametrize(
-    ("input_schema", "input_args", "valid_manifest", "valid_config", "expected_status_code"), TESTS
+    (
+        "input_schema",
+        "input_args",
+        "valid_manifest",
+        "valid_config",
+        "expected_status_code",
+    ),
+    TESTS,
 )
 def test_check_source_has_tests_by_name(
     input_schema,

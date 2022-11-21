@@ -20,7 +20,7 @@ sources:
     -   name: with_description
     """,
         True,
-        0
+        0,
     ),
     (
         """
@@ -37,7 +37,7 @@ sources:
     -   name: with_description
     """,
         True,
-        1
+        1,
     ),
     (
         """
@@ -52,7 +52,7 @@ sources:
     -   name: with_description
     """,
         True,
-        1
+        1,
     ),
     (
         """
@@ -63,7 +63,7 @@ sources:
     -   name: with_description
     """,
         True,
-        1
+        1,
     ),
     (
         """
@@ -81,7 +81,7 @@ sources:
                 period: hour
     """,
         True,
-        0
+        0,
     ),
     (
         """
@@ -98,7 +98,7 @@ sources:
                 period: hour
     """,
         True,
-        1
+        1,
     ),
     (
         """
@@ -113,7 +113,7 @@ sources:
                 period: hour
     """,
         True,
-        1
+        1,
     ),
     (
         """
@@ -131,14 +131,21 @@ sources:
     -   name: with_description
     """,
         False,
-        0
+        0,
     ),
 )
 
 
-@pytest.mark.parametrize(("input_schema", "valid_config", "expected_status_code"), TESTS)
+@pytest.mark.parametrize(
+    ("input_schema", "valid_config", "expected_status_code"), TESTS
+)
 def test_check_source_has_freshness(
-        input_schema, valid_config, expected_status_code, tmpdir, manifest_path_str, config_path_str
+    input_schema,
+    valid_config,
+    expected_status_code,
+    tmpdir,
+    manifest_path_str,
+    config_path_str,
 ):
     input_args = [
         "--freshness",
@@ -146,7 +153,7 @@ def test_check_source_has_freshness(
         "warn_after",
         "--manifest",
         manifest_path_str,
-        '--is_test'
+        "--is_test",
     ]
 
     if valid_config:
@@ -154,7 +161,5 @@ def test_check_source_has_freshness(
 
     yml_file = tmpdir.join("schema.yml")
     yml_file.write(input_schema)
-    status_code = main(
-        argv=[str(yml_file), *input_args]
-    )
+    status_code = main(argv=[str(yml_file), *input_args])
     assert status_code == expected_status_code

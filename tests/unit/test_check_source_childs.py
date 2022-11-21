@@ -13,7 +13,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--min-child-cnt", "1", '--is_test'],
+        ["--min-child-cnt", "1", "--is_test"],
         True,
         True,
         0,
@@ -26,7 +26,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--min-child-cnt", "1", '--is_test'],
+        ["--min-child-cnt", "1", "--is_test"],
         False,
         True,
         1,
@@ -39,7 +39,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--max-child-cnt", "1", '--is_test'],
+        ["--max-child-cnt", "1", "--is_test"],
         True,
         True,
         1,
@@ -52,7 +52,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--min-child-cnt", "5", '--is_test'],
+        ["--min-child-cnt", "5", "--is_test"],
         True,
         True,
         1,
@@ -65,7 +65,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--max-child-cnt", "5", '--is_test'],
+        ["--max-child-cnt", "5", "--is_test"],
         True,
         True,
         0,
@@ -78,13 +78,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        [
-            "--min-child-cnt",
-            "1",
-            "--max-child-cnt",
-            "3",
-            '--is_test'
-        ],
+        ["--min-child-cnt", "1", "--max-child-cnt", "3", "--is_test"],
         True,
         True,
         0,
@@ -97,7 +91,7 @@ sources:
     -   name: parent_child1
         description: test description
     """,
-        ["--min-child-cnt", "1", '--is_test'],
+        ["--min-child-cnt", "1", "--is_test"],
         True,
         False,
         0,
@@ -106,7 +100,14 @@ sources:
 
 
 @pytest.mark.parametrize(
-    ("input_schema", "input_args", "valid_manifest", "valid_config", "expected_status_code"), TESTS
+    (
+        "input_schema",
+        "input_args",
+        "valid_manifest",
+        "valid_config",
+        "expected_status_code",
+    ),
+    TESTS,
 )
 def test_check_model_parents_and_childs(
     input_schema,

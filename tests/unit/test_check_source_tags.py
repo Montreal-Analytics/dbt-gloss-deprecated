@@ -142,23 +142,18 @@ sources:
 )
 
 
-@pytest.mark.parametrize(("input_schema", "valid_config", "expected_status_code"), TESTS)
+@pytest.mark.parametrize(
+    ("input_schema", "valid_config", "expected_status_code"), TESTS
+)
 def test_check_source_has_tags(
-        input_schema,
-        valid_config,
-        expected_status_code,
-        tmpdir,
-        manifest_path_str,
-        config_path_str
+    input_schema,
+    valid_config,
+    expected_status_code,
+    tmpdir,
+    manifest_path_str,
+    config_path_str,
 ):
-    input_args = [
-        "--tags",
-        "foo",
-        "bar",
-        '--is_test',
-        "--manifest",
-        manifest_path_str
-    ]
+    input_args = ["--tags", "foo", "bar", "--is_test", "--manifest", manifest_path_str]
 
     if valid_config:
         input_args.extend(["--config", config_path_str])

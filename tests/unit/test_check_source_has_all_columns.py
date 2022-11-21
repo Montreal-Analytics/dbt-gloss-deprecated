@@ -122,10 +122,10 @@ def test_check_source_columns_have_desc(
     catalog_path_str,
     tmpdir,
     manifest_path_str,
-    config_path_str
+    config_path_str,
 ):
     yml_file = tmpdir.join("schema.yml")
-    input_args = [str(yml_file), "--manifest", manifest_path_str, '--is_test']
+    input_args = [str(yml_file), "--manifest", manifest_path_str, "--is_test"]
     yml_file.write(input_schema)
 
     if valid_catalog:

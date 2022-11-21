@@ -101,22 +101,24 @@ sources:
 )
 
 
-@pytest.mark.parametrize(("input_schema", "valid_config", "expected_status_code"), TESTS)
+@pytest.mark.parametrize(
+    ("input_schema", "valid_config", "expected_status_code"), TESTS
+)
 def test_check_source_has_meta_keys(
-        input_schema,
-        valid_config,
-        expected_status_code,
-        tmpdir,
-        manifest_path_str,
-        config_path_str
+    input_schema,
+    valid_config,
+    expected_status_code,
+    tmpdir,
+    manifest_path_str,
+    config_path_str,
 ):
     input_args = [
         "--meta-keys",
         "foo",
         "bar",
-        '--is_test',
+        "--is_test",
         "--manifest",
-        manifest_path_str
+        manifest_path_str,
     ]
 
     if valid_config:
