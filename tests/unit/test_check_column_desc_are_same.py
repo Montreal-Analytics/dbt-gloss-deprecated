@@ -124,9 +124,17 @@ models:
 )
 
 
-@pytest.mark.parametrize(("schema_yml", "valid_config", "expected_status_code", "ignore"), TESTS)
+@pytest.mark.parametrize(
+    ("schema_yml", "valid_config", "expected_status_code", "ignore"), TESTS
+)
 def test_check_column_desc_is_same(
-    schema_yml, valid_config, expected_status_code, ignore, tmpdir, manifest_path_str, config_path_str
+    schema_yml,
+    valid_config,
+    expected_status_code,
+    ignore,
+    tmpdir,
+    manifest_path_str,
+    config_path_str,
 ):
     yml_file = tmpdir.join("schema.yml")
     yml_file.write(schema_yml)

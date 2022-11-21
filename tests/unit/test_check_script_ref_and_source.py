@@ -136,10 +136,17 @@ def test_check_script_ref_and_source(
 
 
 @pytest.mark.parametrize(
-    ("input_s", "expected_status_code", "valid_manifest", "valid_config"), TESTS_INTEGRATION
+    ("input_s", "expected_status_code", "valid_manifest", "valid_config"),
+    TESTS_INTEGRATION,
 )
 def test_check_script_ref_and_source_integration(
-    input_s, expected_status_code, valid_manifest, valid_config, manifest_path_str, config_path_str, tmpdir
+    input_s,
+    expected_status_code,
+    valid_manifest,
+    valid_config,
+    manifest_path_str,
+    config_path_str,
+    tmpdir,
 ):
     path = tmpdir.join("file.sql")
     path.write_text(input_s, "utf-8")

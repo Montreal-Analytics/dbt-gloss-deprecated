@@ -56,7 +56,15 @@ TESTS = (
 
 
 @pytest.mark.parametrize(
-    ("input_args", "pattern", "dtype", "valid_catalog", "valid_config", "expected_status_code"), TESTS
+    (
+        "input_args",
+        "pattern",
+        "dtype",
+        "valid_catalog",
+        "valid_config",
+        "expected_status_code",
+    ),
+    TESTS,
 )
 def test_check_column_name_contract(
     input_args,

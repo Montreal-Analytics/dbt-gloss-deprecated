@@ -295,7 +295,9 @@ select * from unioned
 )
 
 
-@pytest.mark.parametrize(("input_s", "args", "valid_config", "expected_status_code", "output"), TESTS)
+@pytest.mark.parametrize(
+    ("input_s", "args", "valid_config", "expected_status_code", "output"), TESTS
+)
 def test_has_table_name(input_s, args, valid_config, expected_status_code, output):
     dotless = True if "--ignore-dotless-table" in args else False
     ret, tables = has_table_name(input_s, "text.sql", dotless)
@@ -304,9 +306,18 @@ def test_has_table_name(input_s, args, valid_config, expected_status_code, outpu
     assert ret == expected_status_code
 
 
-@pytest.mark.parametrize(("input_s", "args", "valid_config", "expected_status_code", "output"), TESTS)
+@pytest.mark.parametrize(
+    ("input_s", "args", "valid_config", "expected_status_code", "output"), TESTS
+)
 def test_has_table_name_integration(
-    input_s, args, valid_config, expected_status_code, output, tmpdir, manifest_path_str, config_path_str
+    input_s,
+    args,
+    valid_config,
+    expected_status_code,
+    output,
+    tmpdir,
+    manifest_path_str,
+    config_path_str,
 ):
     path = tmpdir.join("file.txt")
     path.write_text(input_s, "utf-8")

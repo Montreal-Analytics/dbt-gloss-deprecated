@@ -24,7 +24,9 @@ TESTS = (
 )
 
 
-@pytest.mark.parametrize(("input_s", "valid_config", "expected_status_code", "output"), TESTS)
+@pytest.mark.parametrize(
+    ("input_s", "valid_config", "expected_status_code", "output"), TESTS
+)
 def test_fix_semicolon(input_s, valid_config, expected_status_code, output):
     file_obj = io.BytesIO(input_s)
     status_code = check_semicolon(file_obj, replace=True)
@@ -39,9 +41,17 @@ def test_fix_semicolon_default():
     assert status_code == 1
 
 
-@pytest.mark.parametrize(("input_s", "valid_config", "expected_status_code", "output"), TESTS)
+@pytest.mark.parametrize(
+    ("input_s", "valid_config", "expected_status_code", "output"), TESTS
+)
 def test_fix_semicolon_integration(
-    input_s, valid_config, expected_status_code, output, tmpdir, manifest_path_str, config_path_str
+    input_s,
+    valid_config,
+    expected_status_code,
+    output,
+    tmpdir,
+    manifest_path_str,
+    config_path_str,
 ):
     path = tmpdir.join("file.txt")
     path.write_binary(input_s)

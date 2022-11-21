@@ -141,10 +141,18 @@ TESTS = (  # type: ignore
 
 
 @pytest.mark.parametrize(
-    ("input_s", "expected_status_code", "output", "valid_manifest", "valid_config"), TESTS
+    ("input_s", "expected_status_code", "output", "valid_manifest", "valid_config"),
+    TESTS,
 )
 def test_replace_script_table_names(
-    input_s, expected_status_code, output, valid_manifest, valid_config, manifest_path_str, config_path_str, tmpdir
+    input_s,
+    expected_status_code,
+    output,
+    valid_manifest,
+    valid_config,
+    manifest_path_str,
+    config_path_str,
+    tmpdir,
 ):
     path = tmpdir.join("file.txt")
     path.write_text(input_s, "utf-8")
