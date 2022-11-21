@@ -12,6 +12,7 @@ from yaml import dump
 from yaml import safe_load
 
 from dbt_gloss.utils import add_catalog_args
+from dbt_gloss.utils import add_config_args
 from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_manifest_args
 from dbt_gloss.utils import add_tracking_args
@@ -114,6 +115,7 @@ def generate_properties_file(
 
 def main(argv: Optional[Sequence[str]] = None) -> Dict:
     parser = argparse.ArgumentParser()
+    add_config_args(parser)
     add_filenames_args(parser)
     add_manifest_args(parser)
     add_tracking_args(parser)

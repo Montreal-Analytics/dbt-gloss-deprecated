@@ -12,6 +12,7 @@ TESTS = (  # type: ignore
     SELECT * FROM AA
     """,
         [],
+        True,
         1,
         {"aa"},
     ),
@@ -21,6 +22,7 @@ TESTS = (  # type: ignore
     LEFT JOIN BB ON AA.A = BB.A
     """,
         [],
+        True,
         1,
         {"aa", "bb"},
     ),
@@ -33,6 +35,7 @@ TESTS = (  # type: ignore
     LEFT JOIN BB ON AA.A = BB.A
     """,
         [],
+        True,
         1,
         {"cc", "bb"},
     ),
@@ -45,6 +48,7 @@ TESTS = (  # type: ignore
     LEFT JOIN BB ON AA.A = BB.A
     """,
         [],
+        True,
         1,
         {"bb"},
     ),
@@ -60,6 +64,7 @@ TESTS = (  # type: ignore
     LEFT JOIN BB ON AA.A = BB.A
     """,
         [],
+        True,
         1,
         {"xx"},
     ),
@@ -75,6 +80,7 @@ TESTS = (  # type: ignore
     LEFT JOIN BB ON AA.A = BB.A
     """,
         [],
+        True,
         1,
         {"xx.xx.xx"},
     ),
@@ -87,6 +93,7 @@ TESTS = (  # type: ignore
     LEFT JOIN {{ ref('xx') }} ON AA.A = BB.A
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -100,6 +107,7 @@ TESTS = (  # type: ignore
     LEFT JOIN {{ ref('xx') }} ON AA.A = BB.A
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -115,6 +123,7 @@ TESTS = (  # type: ignore
     LEFT JOIN {{ ref('xx') }} ON AA.A = BB.A
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -129,6 +138,7 @@ TESTS = (  # type: ignore
     )
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -146,6 +156,7 @@ TESTS = (  # type: ignore
     SELECT * FROM source
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -163,6 +174,7 @@ TESTS = (  # type: ignore
     SELECT * FROM source
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -176,6 +188,7 @@ TESTS = (  # type: ignore
     SELECT * FROM source
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -208,6 +221,7 @@ final as (
 select * from final
     """,
         [],
+        True,
         0,
         {},
     ),
@@ -235,6 +249,7 @@ unioned as (
 select * from unioned
     """,
         ["--ignore-dotless-table"],
+        True,
         0,
         {},
     ),
@@ -264,14 +279,24 @@ unioned as (
 select * from unioned
     """,
         ["--ignore-dotless-table"],
+        True,
         1,
         {"aa.bb"},
+    ),
+    (
+        """
+    SELECT * FROM AA
+    """,
+        [],
+        False,
+        1,
+        {"aa"},
     ),
 )
 
 
-@pytest.mark.parametrize(("input_s", "args", "expected_status_code", "output"), TESTS)
-def test_has_table_name(input_s, args, expected_status_code, output):
+@pytest.mark.parametrize(("input_s", "args", "valid_config", "expected_status_code", "output"), TESTS)
+def test_has_table_name(input_s, args, valid_config, expected_status_code, output):
     dotless = True if "--ignore-dotless-table" in args else False
     ret, tables = has_table_name(input_s, "text.sql", dotless)
     diff = tables.symmetric_difference(output)
@@ -279,14 +304,18 @@ def test_has_table_name(input_s, args, expected_status_code, output):
     assert ret == expected_status_code
 
 
-@pytest.mark.parametrize(("input_s", "args", "expected_status_code", "output"), TESTS)
+@pytest.mark.parametrize(("input_s", "args", "valid_config", "expected_status_code", "output"), TESTS)
 def test_has_table_name_integration(
-    input_s, args, expected_status_code, output, tmpdir, manifest_path_str
+    input_s, args, valid_config, expected_status_code, output, tmpdir, manifest_path_str, config_path_str
 ):
     path = tmpdir.join("file.txt")
     path.write_text(input_s, "utf-8")
+    input_args = ["--is_test", "--manifest", manifest_path_str, *args]
 
-    ret = main([str(path), "--is_test", "--manifest", manifest_path_str, *args])
+    if valid_config:
+        input_args.extend(["--config", config_path_str])
+
+    ret = main([str(path), *input_args])
 
     assert ret == expected_status_code
 

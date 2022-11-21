@@ -14,6 +14,7 @@ TESTS = (  # type: ignore
     SELECT *, bb.replaced_model, replaced_model.aa FROM {{ ref('replaced_model') }}
     """,
         True,
+        True,
     ),
     (
         """
@@ -23,6 +24,7 @@ TESTS = (  # type: ignore
         """
     SELECT * FROM {{ ref('replaced_model') }}
     """,
+        True,
         True,
     ),
     (
@@ -34,6 +36,7 @@ TESTS = (  # type: ignore
     SELECT * FROM {{ ref('replaced_model') }}
     """,
         True,
+        True,
     ),
     (
         """
@@ -44,6 +47,7 @@ TESTS = (  # type: ignore
     SELECT * FROM {{ ref('replaced_model') }}
     """,
         False,
+        True,
     ),
     (
         """
@@ -55,6 +59,7 @@ TESTS = (  # type: ignore
     SELECT * FROM {{ ref('replaced_model') }}
     JOIN {{ source('source1', 'table1') }}
     """,
+        True,
         True,
     ),
     (
@@ -69,6 +74,7 @@ TESTS = (  # type: ignore
     JOIN {{ source('source1', 'table1') }}
     JOIN {{ source('ff', 'bb') }}
     """,
+        True,
         True,
     ),
     (
@@ -85,6 +91,7 @@ TESTS = (  # type: ignore
     JOIN {{ source('ff', 'bb') }}
     JOIN aa
     """,
+        True,
         True,
     ),
     (
@@ -99,6 +106,7 @@ TESTS = (  # type: ignore
     JOIN {{ source('source1', 'table1') }}
     JOIN {{ source('source1', 'table2') }}
     """,
+        True,
         True,
     ),
     (
@@ -116,15 +124,27 @@ TESTS = (  # type: ignore
     JOIN {{ source('source1', 'table2') }}
     """,
         True,
+        True,
+    ),
+    (
+        """
+    SELECT * FROM {{ ref('replaced_model') }}
+    """,
+        0,
+        """
+    SELECT * FROM {{ ref('replaced_model') }}
+    """,
+        True,
+        False,
     ),
 )
 
 
 @pytest.mark.parametrize(
-    ("input_s", "expected_status_code", "output", "valid_manifest"), TESTS
+    ("input_s", "expected_status_code", "output", "valid_manifest", "valid_config"), TESTS
 )
 def test_replace_script_table_names(
-    input_s, expected_status_code, output, valid_manifest, manifest_path_str, tmpdir
+    input_s, expected_status_code, output, valid_manifest, valid_config, manifest_path_str, config_path_str, tmpdir
 ):
     path = tmpdir.join("file.txt")
     path.write_text(input_s, "utf-8")
@@ -132,6 +152,9 @@ def test_replace_script_table_names(
 
     if valid_manifest:
         input_args.extend(["--manifest", manifest_path_str])
+
+    if valid_config:
+        input_args.extend(["--config", config_path_str])
 
     ret = main(input_args)
 

@@ -13,6 +13,7 @@ from yaml import dump
 from yaml import safe_load
 
 from dbt_gloss.check_script_ref_and_source import check_refs_sources
+from dbt_gloss.utils import add_config_args
 from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_manifest_args
 from dbt_gloss.utils import add_tracking_args
@@ -63,6 +64,7 @@ def create_missing_sources(
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
+    add_config_args(parser)
     add_filenames_args(parser)
     add_manifest_args(parser)
     add_tracking_args(parser)
