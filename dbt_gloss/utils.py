@@ -122,6 +122,15 @@ def get_json(json_filename: str) -> Dict[str, Any]:
         raise JsonOpenError(e)
 
 
+def get_config_file(config_file_path: str) -> Dict[str, Any]:
+    try:
+        path = Path(config_file_path)
+        config = safe_load(path.open())
+    except FileNotFoundError:
+        config = {}
+    return config
+
+
 def get_models(
     manifest: Dict[str, Any],
     filenames: Set[str],
@@ -311,6 +320,17 @@ def add_filenames_args(parser: argparse.ArgumentParser) -> None:
     )
 
 
+def add_config_args(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--config",
+        type=str,
+        default=".dbt-gloss.yaml",
+        help="""Location of .dbt-gloss.yaml. Usually .dbt-gloss.yaml.
+        This file contains the global config for dbt-gloss.
+        """,
+    )
+
+
 def add_manifest_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--manifest",
@@ -322,19 +342,10 @@ def add_manifest_args(parser: argparse.ArgumentParser) -> None:
     )
 
 
-def add_tracking_args(
-        parser: argparse.ArgumentParser
-) -> NoReturn:
-    parser.add_argument(
-        "--disable_tracking",
-        action='store_true',
-        help="""Whether this invocation sent anonymous usage statistics 
-        while executing.
-        """,
-    )
+def add_tracking_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--is_test",
-        action='store_true',
+        action="store_true",
         help="True the execution is a test.",
     )
 
