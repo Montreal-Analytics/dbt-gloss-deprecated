@@ -6,6 +6,7 @@ from typing import Dict
 from typing import Optional
 from typing import Sequence
 
+from dbt_gloss.utils import add_config_args
 from dbt_gloss.utils import add_filenames_args
 from dbt_gloss.utils import add_manifest_args
 from dbt_gloss.utils import add_tracking_args
@@ -54,6 +55,7 @@ def has_meta_key(
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
+    add_config_args(parser)
     add_filenames_args(parser)
     add_manifest_args(parser)
     add_tracking_args(parser)
