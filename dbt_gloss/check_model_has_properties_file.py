@@ -58,7 +58,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
 
     start_time = time.time()
-    status_code, _ = has_properties_file(paths=args.filenames, manifest=manifest)
+    status_code, _ = has_properties_file(
+        paths=args.filenames, 
+        manifest=manifest
+    )
     end_time = time.time()
     script_args = vars(args)
 

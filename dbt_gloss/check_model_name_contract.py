@@ -68,10 +68,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     start_time = time.time()
     status_code = check_model_name_contract(
-                    paths=args.filenames,
-                            pattern=args.pattern,
-                            catalog=catalog,
-                        )
+        paths=args.filenames,
+        pattern=args.pattern,
+        catalog=catalog,
+    )
     end_time = time.time()
     script_args = vars(args)   
 

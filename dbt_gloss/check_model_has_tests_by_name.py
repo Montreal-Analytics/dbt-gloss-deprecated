@@ -98,7 +98,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     end_time = time.time()
     
-    status_code = check_test_cnt(paths=args.filenames, manifest=manifest, required_tests=required_tests)
+    status_code = check_test_cnt(
+        paths=args.filenames, 
+        manifest=manifest, 
+        required_tests=required_tests
+    )
     script_args = vars(args)
 
     tracker = dbtGlossTracking()

@@ -73,7 +73,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
 
     start_time = time.time()
-    status_code = check_test_cnt(paths=args.filenames, manifest=manifest, test_cnt=args.test_cnt)
+    status_code = check_test_cnt(
+        paths=args.filenames, 
+        manifest=manifest, 
+        test_cnt=args.test_cnt
+    )
     end_time = time.time()
     script_args = vars(args)
 

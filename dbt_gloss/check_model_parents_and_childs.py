@@ -135,7 +135,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ]
 
     start_time = time.time()
-    status_code = check_child_parent_cnt(paths=args.filenames, manifest=manifest,required_cnt=required_cnt)
+    status_code = check_child_parent_cnt(
+        paths=args.filenames, 
+        manifest=manifest,
+        required_cnt=required_cnt
+    )
     end_time = time.time()
     script_args = vars(args)   
 

@@ -90,11 +90,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     start_time = time.time()
     status_code = check_parents_database(
-                      paths=args.filenames,
-                      manifest=manifest,
-                      blacklist=args.blacklist,
-                      whitelist=args.whitelist,
-                  )
+        paths=args.filenames,
+        manifest=manifest,
+        blacklist=args.blacklist,
+        whitelist=args.whitelist,
+    )
     end_time = time.time()
     script_args = vars(args)   
 

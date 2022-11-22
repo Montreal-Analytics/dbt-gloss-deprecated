@@ -105,7 +105,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 1
     
     start_time = time.time()
-    status_code = check_model_columns(paths=args.filenames, manifest=manifest, catalog=catalog)
+    status_code = check_model_columns(
+        paths=args.filenames, 
+        manifest=manifest, 
+        catalog=catalog
+    )
     end_time = time.time()
     script_args = vars(args)
 
