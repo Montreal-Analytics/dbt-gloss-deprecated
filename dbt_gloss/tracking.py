@@ -4,21 +4,25 @@ from dbt_gloss.utils import get_config_file
 from mixpanel import Mixpanel
 from typing import Any, Dict
 
+MIXPANEL_DEV_ENV = "34ffa16dc37f248c18ad6d1b9ea9c3a8"
+MIXPANEL_PROD_ENV = "3fa3db873f6950d10bd770a49c57e33e"
+
 
 class dbtGlossTracking:
-    def __init__(self):
-        self.token = "34ffa16dc37f248c18ad6d1b9ea9c3a8"
-        self.disable_tracking = False
+    def __init__(self, script_args: Dict[str, Any]):
+        config_path = script_args.get("config")
+        self.config = get_config_file(config_path)
+
+        self.script_args = script_args
+        self.token = self._get_mixpanel_env_token()
+        self.disable_tracking = self.config.get("disable-tracking", False)
 
     def track_hook_event(
         self,
         event_name: str,
         event_properties: Dict[str, Any],
         manifest: Dict[str, Any],
-        script_args: Dict[str, Any],
     ) -> None:
-
-        self._parse_config(script_args.get('config'))
 
         if not self.disable_tracking:
             dbt_metadata = manifest.get("metadata")
@@ -35,10 +39,6 @@ class dbtGlossTracking:
             except Exception as error:
                 print(f"Mixpanel Error: {error}")
 
-    def _parse_config(self, config_path: str) -> None:
-        config = get_config_file(config_path)
-        self.disable_tracking = config.get('disable-tracking', False)
-
     def _property_transformations(
         self, dbt_metadata: Dict[str, Any], event_properties: Dict[str, Any]
     ) -> Dict[str, Any]:
@@ -49,6 +49,11 @@ class dbtGlossTracking:
             event_properties = function(event_properties)
 
         return event_properties
+
+    def _get_mixpanel_env_token(self) -> str:
+        is_test = self.config.get("is-test", False) or self.script_args.get("is_test")
+        token = MIXPANEL_DEV_ENV if is_test else MIXPANEL_PROD_ENV
+        return token
 
     @staticmethod
     def _status_code_to_text(event_properties: Dict[str, Any]) -> Dict[str, Any]:
