@@ -14,10 +14,7 @@ from typing import Set
 from typing import Tuple
 
 from dbt_gloss.check_script_has_no_table_name import has_table_name
-from dbt_gloss.utils import add_config_args
-from dbt_gloss.utils import add_filenames_args
-from dbt_gloss.utils import add_manifest_args
-from dbt_gloss.utils import add_tracking_args
+from dbt_gloss.utils import add_default_args
 from dbt_gloss.utils import get_json
 from dbt_gloss.utils import JsonOpenError
 
@@ -80,10 +77,7 @@ def get_unknown_source(tables: Set[str]) -> Generator[Tuple[str, str], None, Non
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
-    add_config_args(parser)
-    add_filenames_args(parser)
-    add_manifest_args(parser)
-    add_tracking_args(parser)
+    add_default_args(parser)
 
     args = parser.parse_args(argv)
 
@@ -115,7 +109,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     end_time = time.time()
     script_args = vars(args)
 
-    tracker = dbtGlossTracking()
+    tracker = dbtGlossTracking(script_args=script_args)
     tracker.track_hook_event(
         event_name="Hook Executed",
         manifest=manifest,
@@ -126,7 +120,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             "execution_time": end_time - start_time,
             "is_pytest": script_args.get("is_test"),
         },
-        script_args=script_args,
     )
 
     return status_code
