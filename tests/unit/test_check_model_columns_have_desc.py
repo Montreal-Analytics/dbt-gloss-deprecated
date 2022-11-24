@@ -3,23 +3,33 @@ import pytest
 from dbt_gloss.check_model_columns_have_desc import check_column_desc
 from dbt_gloss.check_model_columns_have_desc import main
 
-# Input args, valid manifest, expected return value
+# Input args, valid manifest, valid_config, expected return value
 TESTS = (
-    (["aa/bb/with_column_description.sql"], True, 0),
-    (["aa/bb/with_column_description.sql"], False, 1),
-    (["aa/bb/without_columns_description.sql"], True, 1),
-    (["aa/bb/with_some_column_description.sql"], True, 1),
+    (["aa/bb/with_column_description.sql", "--is_test"], True, True, 0),
+    (["aa/bb/with_column_description.sql", "--is_test"], False, True, 1),
+    (["aa/bb/without_columns_description.sql", "--is_test"], True, True, 1),
+    (["aa/bb/with_some_column_description.sql", "--is_test"], True, True, 1),
+    (["aa/bb/with_column_description.sql", "--is_test"], True, False, 0),
 )
 
 
 @pytest.mark.parametrize(
-    ("input_args", "valid_manifest", "expected_status_code"), TESTS
+    ("input_args", "valid_manifest", "valid_config", "expected_status_code"), TESTS
 )
 def test_check_model_columns_have_desc(
-    input_args, valid_manifest, expected_status_code, manifest_path_str
+    input_args,
+    valid_manifest,
+    valid_config,
+    expected_status_code,
+    manifest_path_str,
+    config_path_str,
 ):
     if valid_manifest:
         input_args.extend(["--manifest", manifest_path_str])
+
+    if valid_config:
+        input_args.extend(["--config", config_path_str])
+
     status_code = main(input_args)
     assert status_code == expected_status_code
 
@@ -41,6 +51,7 @@ models:
         argv=[
             "in_schema_column_description.sql",
             str(yml_file),
+            "--is_test",
             "--manifest",
             manifest_path_str,
         ],
@@ -90,6 +101,7 @@ models:
             "with_some_column_description.sql",
             "without_columns_description.sql",
             str(yml_file),
+            "--is_test",
             "--manifest",
             manifest_path_str,
         ],
@@ -116,6 +128,7 @@ models:
         argv=[
             "without_columns_description.sql",
             str(yml_file),
+            "--is_test",
             "--manifest",
             manifest_path_str,
         ],
