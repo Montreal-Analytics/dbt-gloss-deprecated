@@ -6,10 +6,7 @@ from typing import Dict
 from typing import Optional
 from typing import Sequence
 
-from dbt_gloss.utils import add_config_args
-from dbt_gloss.utils import add_filenames_args
-from dbt_gloss.utils import add_manifest_args
-from dbt_gloss.utils import add_tracking_args
+from dbt_gloss.utils import add_default_args
 from dbt_gloss.utils import get_filenames
 from dbt_gloss.utils import get_json
 from dbt_gloss.utils import get_model_schemas
@@ -18,6 +15,7 @@ from dbt_gloss.utils import get_models
 from dbt_gloss.utils import JsonOpenError
 
 from dbt_gloss.tracking import dbtGlossTracking
+
 
 def has_meta_key(
     paths: Sequence[str], manifest: Dict[str, Any], meta_keys: Sequence[str]
@@ -55,10 +53,7 @@ def has_meta_key(
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
-    add_config_args(parser)
-    add_filenames_args(parser)
-    add_manifest_args(parser)
-    add_tracking_args(parser)
+    add_default_args(parser)
 
     parser.add_argument(
         "--meta-keys",
@@ -77,26 +72,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     start_time = time.time()
     status_code = has_meta_key(
-        paths=args.filenames, 
-        manifest=manifest, 
-        meta_keys=args.meta_keys
+        paths=args.filenames, manifest=manifest, meta_keys=args.meta_keys
     )
     end_time = time.time()
     script_args = vars(args)
 
-    tracker = dbtGlossTracking()
+    tracker = dbtGlossTracking(script_args=script_args)
     tracker.track_hook_event(
-        event_name='Hook Executed',
+        event_name="Hook Executed",
         manifest=manifest,
         event_properties={
-            'hook_name': os.path.basename(__file__),
-            'description': 'Check model has meta keys',
-            'status': status_code,
-            'execution_time': end_time - start_time,
-            'is_pytest': script_args.get('is_test')
+            "hook_name": os.path.basename(__file__),
+            "description": "Check model has meta keys",
+            "status": status_code,
+            "execution_time": end_time - start_time,
+            "is_pytest": script_args.get("is_test"),
         },
-        script_args=script_args,
-    )    
+    )
 
     return status_code
 
