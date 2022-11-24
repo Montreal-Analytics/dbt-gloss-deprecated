@@ -1,24 +1,28 @@
 import argparse
 import operator
+import os
+import time
+
 from pathlib import Path
 from typing import Any
 from typing import Dict
 from typing import Optional
 from typing import Sequence
 
-from dbt_gloss.utils import add_filenames_args
-from dbt_gloss.utils import add_manifest_args
+from dbt_gloss.utils import add_default_args
 from dbt_gloss.utils import get_json
 from dbt_gloss.utils import get_parent_childs
 from dbt_gloss.utils import get_source_schemas
 from dbt_gloss.utils import JsonOpenError
+
+from dbt_gloss.tracking import dbtGlossTracking
 
 
 def check_child_parent_cnt(
     paths: Sequence[str],
     manifest: Dict[str, Any],
     required_cnt: Sequence[Dict[str, Any]],
-) -> int:
+) -> Dict[str, Any]:
     status_code = 0
     ymls = [Path(path) for path in paths]
 
@@ -46,13 +50,12 @@ def check_child_parent_cnt(
                     f"is/are required.",
                 )
 
-    return status_code
+    return {"status_code": status_code}
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
-    add_filenames_args(parser)
-    add_manifest_args(parser)
+    add_default_args(parser)
 
     parser.add_argument(
         "--min-child-cnt",
@@ -89,9 +92,29 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             "cnt": args.max_child_cnt,
         },
     ]
-    return check_child_parent_cnt(
+
+    start_time = time.time()
+    hook_properties = check_child_parent_cnt(
         paths=args.filenames, manifest=manifest, required_cnt=required_cnt
     )
+    end_time = time.time()
+    script_args = vars(args)
+
+    tracker = dbtGlossTracking(script_args=script_args)
+    tracker.track_hook_event(
+        event_name="Hook Executed",
+        manifest=manifest,
+        event_properties={
+            "hook_name": os.path.basename(__file__),
+            "description": "Check the source has a specific number (max/min) "
+            "of childs.",
+            "status": hook_properties.get("status_code"),
+            "execution_time": end_time - start_time,
+            "is_pytest": script_args.get("is_test"),
+        },
+    )
+
+    return hook_properties.get("status_code")
 
 
 if __name__ == "__main__":
