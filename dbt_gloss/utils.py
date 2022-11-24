@@ -363,6 +363,13 @@ def add_catalog_args(parser: argparse.ArgumentParser) -> None:
     )
 
 
+def add_default_args(parser: argparse.ArgumentParser) -> None:
+    add_filenames_args(parser)
+    add_manifest_args(parser)
+    add_config_args(parser)
+    add_tracking_args(parser)
+
+
 def add_dbt_cmd_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--global-flags",

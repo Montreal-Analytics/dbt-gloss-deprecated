@@ -7,10 +7,7 @@ from typing import Dict
 from typing import Optional
 from typing import Sequence
 
-from dbt_gloss.utils import add_config_args
-from dbt_gloss.utils import add_filenames_args
-from dbt_gloss.utils import add_manifest_args
-from dbt_gloss.utils import add_tracking_args
+from dbt_gloss.utils import add_default_args
 from dbt_gloss.utils import get_filenames
 from dbt_gloss.utils import get_json
 from dbt_gloss.utils import get_model_schemas
@@ -49,11 +46,7 @@ def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> Dict:
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
-    add_filenames_args(parser)
-    add_config_args(parser)
-    add_manifest_args(parser)
-    add_tracking_args(parser)
-
+    add_default_args(parser)
     args = parser.parse_args(argv)
 
     try:
