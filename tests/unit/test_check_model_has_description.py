@@ -4,9 +4,9 @@ from dbt_gloss.check_model_has_description import main
 
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["aa/bb/with_description.sql", '--is_test'], True, True, 0),
-    (["bb/bb/with_description.sql", '--is_test'], False, True, 1),
-    (["cc/bb/without_description.sql", '--is_test'], True, True, 1),
+    (["aa/bb/with_description.sql"], True, True, 0),
+    (["bb/bb/with_description.sql"], False, True, 1),
+    (["cc/bb/without_description.sql"], True, True, 1),
     (["dd/bb/with_description.sql", '--is_test'], True, False, 0),
 )
 

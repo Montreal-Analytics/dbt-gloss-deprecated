@@ -279,7 +279,8 @@ CATALOG = {
 }
 
 CONFIG_FILE = {
-    "disable-tracking": True
+    "disable-tracking": True,
+    "is-test": True
 }
 
 
