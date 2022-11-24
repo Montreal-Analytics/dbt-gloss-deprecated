@@ -4,20 +4,30 @@ from dbt_gloss.check_macro_has_description import main
 
 # Input args, valid manifest, expected return value
 TESTS = (
-    (["macros/aa/with_description.sql"], True, 0),
-    (["macros/aa/with_description.sql"], False, 1),
-    (["macros/aa/without_description.sql"], True, 1),
+    (["macros/aa/with_description.sql", "--is_test"], True, True, 0),
+    (["macros/aa/with_description.sql", "--is_test"], False, True, 1),
+    (["macros/aa/without_description.sql", "--is_test"], True, True, 1),
+    (["macros/aa/with_description.sql", "--is_test"], True, False, 0),
 )
 
 
 @pytest.mark.parametrize(
-    ("input_args", "valid_manifest", "expected_status_code"), TESTS
+    ("input_args", "valid_manifest", "valid_config", "expected_status_code"), TESTS
 )
 def test_check_macro_description(
-    input_args, valid_manifest, expected_status_code, manifest_path_str
+    input_args,
+    valid_manifest,
+    valid_config,
+    expected_status_code,
+    manifest_path_str,
+    config_path_str,
 ):
     if valid_manifest:
         input_args.extend(["--manifest", manifest_path_str])
+
+    if valid_config:
+        input_args.extend(["--config", config_path_str])
+
     status_code = main(input_args)
     assert status_code == expected_status_code
 

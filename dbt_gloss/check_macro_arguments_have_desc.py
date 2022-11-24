@@ -1,14 +1,15 @@
 import argparse
 import itertools
+import os
+import time
+
 from typing import Any
 from typing import Dict
 from typing import Optional
 from typing import Sequence
 from typing import Set
-from typing import Tuple
 
-from dbt_gloss.utils import add_filenames_args
-from dbt_gloss.utils import add_manifest_args
+from dbt_gloss.utils import add_default_args
 from dbt_gloss.utils import get_filenames
 from dbt_gloss.utils import get_json
 from dbt_gloss.utils import get_macro_schemas
@@ -18,10 +19,12 @@ from dbt_gloss.utils import JsonOpenError
 from dbt_gloss.utils import Macro
 from dbt_gloss.utils import MacroSchema
 
+from dbt_gloss.tracking import dbtGlossTracking
+
 
 def check_argument_desc(
     paths: Sequence[str], manifest: Dict[str, Any]
-) -> Tuple[int, Dict[str, Any]]:
+) -> Dict[str, Any]:
     status_code = 0
     ymls = get_filenames(paths, [".yml", ".yaml"])
     sqls = get_macro_sqls(paths, manifest)
@@ -69,13 +72,13 @@ def check_argument_desc(
                 f"{sqls.get(macro)}: "
                 f"following arguments are missing description:\n- {result}",
             )
-    return status_code, missing
+
+    return {"status_code": status_code, "missing": missing}
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
-    add_filenames_args(parser)
-    add_manifest_args(parser)
+    add_default_args(parser)
 
     args = parser.parse_args(argv)
 
@@ -85,8 +88,25 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         print(f"Unable to load manifest file ({e})")
         return 1
 
-    status_code, _ = check_argument_desc(paths=args.filenames, manifest=manifest)
-    return status_code
+    start_time = time.time()
+    hook_properties = check_argument_desc(paths=args.filenames, manifest=manifest)
+    end_time = time.time()
+    script_args = vars(args)
+
+    tracker = dbtGlossTracking(script_args=script_args)
+    tracker.track_hook_event(
+        event_name="Hook Executed",
+        manifest=manifest,
+        event_properties={
+            "hook_name": os.path.basename(__file__),
+            "description": "Check the macro arguments have description.",
+            "status": hook_properties.get("status_code"),
+            "execution_time": end_time - start_time,
+            "is_pytest": script_args.get("is_test"),
+        },
+    )
+
+    return hook_properties.get("status_code")
 
 
 if __name__ == "__main__":
