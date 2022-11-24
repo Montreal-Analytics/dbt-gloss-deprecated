@@ -1,5 +1,8 @@
 import argparse
+import os
 import re
+import time
+
 from pathlib import Path
 from typing import Generator
 from typing import Optional
@@ -7,7 +10,11 @@ from typing import Sequence
 from typing import Set
 from typing import Tuple
 
-from dbt_gloss.utils import add_filenames_args
+from dbt_gloss.utils import add_default_args
+from dbt_gloss.utils import get_json
+from dbt_gloss.utils import JsonOpenError
+
+from dbt_gloss.tracking import dbtGlossTracking
 
 REGEX_COMMENTS = (
     r"((\/\*|\{#)([^*]|[\r\n]|([\*#]+([^*\/#]|[\r\n])))*(\*+\/|#\})|[ \t]*--.*)"
@@ -77,13 +84,22 @@ def has_table_name(
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser()
-    add_filenames_args(parser)
+    add_default_args(parser)
 
     parser.add_argument("--ignore-dotless-table", action="store_true")
 
     args = parser.parse_args(argv)
     status_code = 0
 
+    try:
+        manifest = get_json(args.manifest)
+    except JsonOpenError as e:
+        print(f"Unable to load manifest file ({e})")
+        return 1
+
+    script_args = vars(args)
+
+    start_time = time.time()
     for filename in args.filenames:
         sql = Path(filename).read_text()
         status_code_file, tables = has_table_name(
@@ -96,6 +112,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 f"does not use source() or ref() macros for tables:\n- {result}",
             )
             status_code = status_code_file
+    end_time = time.time()
+
+    tracker = dbtGlossTracking(script_args=script_args)
+    tracker.track_hook_event(
+        event_name="Hook Executed",
+        manifest=manifest,
+        event_properties={
+            "hook_name": os.path.basename(__file__),
+            "description": "Check the script has not table name (is not using source() or ref() macro for all tables).",
+            "status": status_code,
+            "execution_time": end_time - start_time,
+            "is_pytest": script_args.get("is_test"),
+        },
+    )
 
     return status_code
 

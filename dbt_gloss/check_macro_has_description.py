@@ -14,7 +14,7 @@ from dbt_gloss.utils import get_macros
 from dbt_gloss.utils import JsonOpenError
 
 
-def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> int:
+def has_description(paths: Sequence[str], manifest: Dict[str, Any]) -> Dict[str, Any]:
     status_code = 0
     ymls = get_filenames(paths, [".yml", ".yaml"])
     sqls = get_macro_sqls(paths, manifest)
