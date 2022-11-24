@@ -325,7 +325,7 @@ def add_config_args(parser: argparse.ArgumentParser) -> None:
         "--config",
         type=str,
         default=".dbt-gloss.yaml",
-        help="""Location of .dbt-gloss.yaml. Usually .dbt-gloss.yaml.
+        help="""Location of .dbt-gloss.yaml. Usually at the dbt root directory.
         This file contains the global config for dbt-gloss.
         """,
     )
@@ -361,6 +361,13 @@ def add_catalog_args(parser: argparse.ArgumentParser) -> None:
         operations.
         """,
     )
+
+
+def add_default_args(parser: argparse.ArgumentParser) -> None:
+    add_filenames_args(parser)
+    add_manifest_args(parser)
+    add_config_args(parser)
+    add_tracking_args(parser)
 
 
 def add_dbt_cmd_args(parser: argparse.ArgumentParser) -> None:
