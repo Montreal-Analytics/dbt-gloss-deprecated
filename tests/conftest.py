@@ -5,16 +5,15 @@ import yaml
 from dbt_gloss.utils import cmd_output
 
 MANIFEST = {
-    "metadata":{
-        "dbt_schema_version":"https://schemas.getdbt.com/dbt/manifest/v6.json",
-        "dbt_version":"1.2.1",
-        "generated_at":"2022-10-04T16:19:51.780894Z",
-        "project_id":"test_project_id",
-        "user_id":"test_user_id",
-        "send_anonymous_usage_stats":True,
-        "adapter_type":"snowflake"
-   },
-
+    "metadata": {
+        "dbt_schema_version": "https://schemas.getdbt.com/dbt/manifest/v6.json",
+        "dbt_version": "1.2.1",
+        "generated_at": "2022-10-04T16:19:51.780894Z",
+        "project_id": "test_project_id",
+        "user_id": "test_user_id",
+        "send_anonymous_usage_stats": True,
+        "adapter_type": "snowflake",
+    },
     "nodes": {
         "model.with_schema": {"patch_path": "/path/exists"},
         "model.without_schema": {"patch_path": ""},
@@ -278,10 +277,7 @@ CATALOG = {
     },
 }
 
-CONFIG_FILE = {
-    "disable-tracking": True,
-    "is-test": True
-}
+CONFIG_FILE = {"version": 1, "disable-tracking": True, "is-test": True}
 
 
 @pytest.fixture(scope="function")

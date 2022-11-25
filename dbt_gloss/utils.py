@@ -24,6 +24,10 @@ class JsonOpenError(RuntimeError):
     pass
 
 
+class CompilationException(RuntimeError):
+    pass
+
+
 @dataclass
 class Model:
     model_id: str
@@ -126,6 +130,7 @@ def get_config_file(config_file_path: str) -> Dict[str, Any]:
     try:
         path = Path(config_file_path)
         config = safe_load(path.open())
+        check_yml_version(config_file_path, config)
     except FileNotFoundError:
         config = {}
     return config
@@ -428,3 +433,37 @@ class ParseDict(argparse.Action):  # pragma: no cover
                 result[key] = value
 
         setattr(namespace, self.dest, result)
+
+
+def check_yml_version(file_path, yaml_dct) -> None:
+    if "version" not in yaml_dct:
+        raise_invalid_property_yml_version(
+            file_path,
+            "the yml property file {} is missing a version tag".format(file_path),
+        )
+
+    version = yaml_dct["version"]
+    # if it's not an integer, the version is malformed, or not
+    # set. Either way, only 'version: 2' is supported.
+    if not isinstance(version, int):
+        raise_invalid_property_yml_version(
+            file_path,
+            "its 'version:' tag must be an integer (e.g. version: 2)."
+            " {} is not an integer".format(version),
+        )
+    if version != 1:
+        raise_invalid_property_yml_version(
+            file_path,
+            "its 'version:' tag is set to {}.  Only 1 is supported".format(version),
+        )
+
+
+def raise_invalid_property_yml_version(path: str, issue: str) -> None:
+    # TODO: URL AS PLACEHOLDER - LINK TO THE DOC SECTION ON dbt-gloss CONFIG WHEN AVAILABLE
+    raise CompilationException(
+        "The yml property file at {} is invalid because {}. Please consult the "
+        "documentation for more information on yml property file syntax:\n\n"
+        "https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-column-desc-are-same".format(
+            path, issue
+        )
+    )
