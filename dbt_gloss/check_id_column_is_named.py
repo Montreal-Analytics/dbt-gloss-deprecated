@@ -13,7 +13,7 @@ from dbt_gloss.utils import get_models
 from dbt_gloss.utils import JsonOpenError
 
 
-def check_id_column_is_named_contract(
+def check_id_column_is_named(
     paths: Sequence[str], catalog: Dict[str, Any]
 ) -> int:
     status_code = 0
@@ -52,7 +52,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         print(f"Unable to load catalog file ({e})")
         return 1
 
-    return check_id_column_is_named_contract(
+    return check_id_column_is_named(
         paths=args.filenames,
         catalog=catalog,
     )
