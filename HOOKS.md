@@ -7,6 +7,7 @@
 **Model checks:**
  * [`check-column-desc-are-same`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-column-desc-are-same): Check column descriptions are the same.
  * [`check-column-name-contract`](): Check column name abides to contract.
+ * [`check-id-column-is-named `](): Check that there are no columns named `id`.
  * [`check-model-columns-have-desc`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-columns-have-desc): Check the model columns have description.
  * [`check-model-has-all-columns`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-all-columns): Check the model has all columns in the properties file.
  * [`check-model-has-description`](https://github.com/Montreal-Analytics/dbt-gloss/blob/main/HOOKS.md#check-model-has-description): Check the model has description.
@@ -142,6 +143,42 @@ You want to make sure your columns follow a contract, e.g. all your boolean colu
 - The catalog is scanned for a model.
 - If any column in the found model matches the regex pattern and it's data type does not match the contract's data type, the hook fails.
 - If any column in the found model matches the contract's data type and does not match the regex pattern, the hook fails.
+
+
+-----
+### `check-id-column-is-named`
+
+Check that there are no columns named `id` as described in the [dbt Labs style guide](https://github.com/dbt-labs/corp/blob/main/dbt_style_guide.md#model-file-naming-and-coding).
+
+#### Example
+```
+repos:
+- repo: https://github.com/Montreal-Analytics/dbt-gloss
+ rev: v1.0.0
+ hooks:
+ - id: check-id-column-is-named
+```
+
+#### When to use it
+
+You want to make sure you don't have any columns simply named as `id`, it and should be named `<object>_id`,
+e.g. `account_id` – this makes it easier to know what id is being referenced in downstream joined models.
+
+#### Requirements
+
+| Model exists in `manifest.json` <sup id="a1">[1](#f1)</sup> | Model exists in `catalog.json` <sup id="a2">[2](#f2)</sup> |
+| :----: | :----------: |
+| :x: Not needed | :white_check_mark: Yes |
+
+<sup id="f1">1</sup> It means that you need to run `dbt run`, `dbt compile` before run this hook.<br/>
+<sup id="f2">2</sup> It means that you need to run `dbt docs generate` before run this hook.
+
+#### How it works
+
+- Hook takes all changed `SQL` files.
+- The model name is obtained from the `SQL` file name.
+- The catalog is scanned for a model.
+- If any column in the found model has a column named `id` (case insensitive), the hook fails.
 
 
 -----
