@@ -10,6 +10,12 @@
     entry: check-column-name-contract
     language: python
     types: [sql]
+-   id: check-id-column-is-named
+    name: Check `id` column is named
+    description: Check that there are no columns named `id`.
+    entry: check-id-column-is-named
+    language: python
+    types: [sql]
 -   id: check-macro-has-description
     name: Check the macro has description
     description: Ensures that the macro has description in properties file.
