@@ -108,6 +108,21 @@ sources:
     """,
         1,
     ),
+    (
+        """
+sources:
+-   name: test
+    tables:
+    -   name: with_description
+        loaded_at_field: aa
+        freshness:
+            warn_after:
+                count: 12
+                period: hour
+            filter: 'test'
+    """,
+        1,
+    ),
 )
 
 
