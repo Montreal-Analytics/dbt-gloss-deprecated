@@ -16,6 +16,18 @@
  </a>
 </p>
 
+---
+# ANNOUNCEMENT
+
+The use of this repository is deprecated. Please update your projects to use [dbt-checkpoint](https://www.github.com/dbt-checkpoint/dbt-checkpoint) instead.
+
+Datacoves and Montreal Analytics are uniting forces to co-maintain `dbt-checkpoint`, in which the improvements we had been working on with this fork are in the process of being merged.
+
+You can [read more about it on our blog](https://blog.montrealanalytics.com/goodbye-pre-commit-dbt-welcome-dbt-checkpoint-cb60fef86728).
+
+
+---
+
 List of [pre-commit](https://pre-commit.com) hooks to ensure the quality of your [dbt](https://www.getdbt.com) projects.
 
 ## Goal
