@@ -251,6 +251,20 @@ CATALOG = {
                 "COL2": {"type": "TEXT", "name": "COL2"},
             },
         },
+        "model.test.id_column_is_named": {
+            "metadata": {},
+            "columns": {
+                "ACCOUNT_ID": {"type": "TEXT", "name": "ACCOUNT_ID"},
+                "COL2": {"type": "TEXT", "name": "COL2"},
+            },
+        },
+        "model.test.id_column_is_not_named": {
+            "metadata": {},
+            "columns": {
+                "ID": {"type": "TEXT", "name": "ID"},
+                "COL2": {"type": "TEXT", "name": "COL2"},
+            },
+        },
     },
     "sources": {
         "source.test.ff.with_catalog_columns": {},
